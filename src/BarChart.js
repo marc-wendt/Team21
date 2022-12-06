@@ -7,7 +7,6 @@ const BarChart = ({ data }) => {
   // define dimensions of the chart
   const width = 1000;
   const height = 500;
-  const margin = { top: 20, right: 30, bottom: 30, left: 200 };
 
   // define color scale
   const color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -85,6 +84,7 @@ const BarChart = ({ data }) => {
     svg
       .append("g")
       .call(d3.axisLeft(yScale));
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (

@@ -1,13 +1,5 @@
-import BarChart from './BarChart';
 import './App.css';
 import BarChart from './BarChart';
-
-const datas = [
-    [10, 30, 40, 20],
-    [10, 40, 30, 20, 50, 10],
-    [60, 30, 40, 20, 30]
-]
-var i = 0;
 
 const data = [
   {month: "Jan 19", sales: 500, sales2: 300, sales3: 400},
