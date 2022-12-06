@@ -49,11 +49,11 @@ const BarChart = ({ data }) => {
     // add legend
     const legend = svg
       .append("g")
-      .attr("transform", `translate(${width - 100}, ${height - 100})`);
+      .attr("transform", `translate(${width + 100}, ${height - 100})`);
 
     legend
       .selectAll("rect")
-      .data(["sales", "sales2"])
+      .data(["sales", "sales2", "sales3"])
       .enter()
       .append("rect")
       .attr("x", 0)
@@ -64,7 +64,7 @@ const BarChart = ({ data }) => {
 
     legend
       .selectAll("text")
-      .data(["sales", "sales2"])
+      .data(["sales", "sales2", "sales3"])
       .enter()
       .append("text")
       .attr("x", 20)
