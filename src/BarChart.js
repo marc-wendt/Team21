@@ -69,6 +69,8 @@ const BarChart = ({ data }) => {
       .append("text")
       .attr("x", 20)
       .attr("y", (d, i) => i * 20 + 10)
+      .style("fill", "white")
+      .style("font-size", "12px")
       .text(d => d);
     // add axes
     svg
