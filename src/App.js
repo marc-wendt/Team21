@@ -1,4 +1,3 @@
-import BarChart from './BarChart';
 import './App.css';
 import BarChart from './BarChart';
 
