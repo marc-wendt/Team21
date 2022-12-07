@@ -1,16 +1,13 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
-const BarChart = ({ data }) => {
+const BarChart = ({ data, keys, colors }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
   const width = 1000;
   const height = 500;
-
-  // define color scale
-  const color = d3.scaleOrdinal(d3.schemeCategory10);
-
+  
   useEffect(() => {
     const svg = d3.select(container.current);
 
@@ -27,7 +24,8 @@ const BarChart = ({ data }) => {
       .range([height, 0]);
 
     // create the stacked bars
-    const stackedData = d3.stack().keys(["hotels_inland", "hotels_ohne_garnis_inland", "gasthöfe_inland", "pensionen_inland", "ferienhäuser_und_ferienwohnungen_inland", "jugendherbergen_inland", "campingplätze_inland", "sonstige_inland"])(data);
+    //const stackedData = d3.stack().keys(["hotels_inland", "hotels_ohne_garnis_inland", "gasthöfe_inland", "pensionen_inland", "ferienhäuser_und_ferienwohnungen_inland", "jugendherbergen_inland", "campingplätze_inland", "sonstige_inland"])(data);
+    const stackedData = d3.stack().keys(keys)(data)
 
     // add bars
     svg
@@ -35,7 +33,7 @@ const BarChart = ({ data }) => {
       .data(stackedData)
       .enter()
       .append("g")
-      .attr("fill", d => color(d.key))
+      .attr("fill", d => colors[d.key])
       .selectAll("rect")
       .data(d => d)
       .enter()
@@ -52,14 +50,14 @@ const BarChart = ({ data }) => {
 
     legend
       .selectAll("rect")
-      .data(["Hotels", "Hotels ohne garnis", "Gasthöfe", "Pensionen", "Ferienhäuser und Ferienwohnungen", "Jugendherbergen", "Campingplätze", "Sonstige"])
+      .data(stackedData)
       .enter()
       .append("rect")
       .attr("x", 0)
       .attr("y", (d, i) => i * 20)
       .attr("width", 10)
       .attr("height", 10)
-      .attr("fill", d => color(d));
+      .attr("fill", d => colors[d.key]);
 
     legend
       .selectAll("text")
