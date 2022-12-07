@@ -23,11 +23,11 @@ const BarChart = ({ data }) => {
 
     const yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, d => d.sales + d.sales2 + d.sales3)])
+      .domain([0, d3.max(data, d => d.hotels_inland + d.hotels_ohne_garnis_inland + d.gasthöfe_inland + d.pensionen_inland + d.ferienhäuser_und_ferienwohnungen_inland + d.jugendherbergen_inland + d.campingplätze_inland + d.sonstige_inland)])
       .range([height, 0]);
 
     // create the stacked bars
-    const stackedData = d3.stack().keys(["sales", "sales2", "sales3"])(data);
+    const stackedData = d3.stack().keys(["hotels_inland", "hotels_ohne_garnis_inland", "gasthöfe_inland", "pensionen_inland", "ferienhäuser_und_ferienwohnungen_inland", "jugendherbergen_inland", "campingplätze_inland", "sonstige_inland"])(data);
 
     // add bars
     svg
@@ -52,7 +52,7 @@ const BarChart = ({ data }) => {
 
     legend
       .selectAll("rect")
-      .data(["sales", "sales2", "sales3"])
+      .data(["Hotels", "Hotels ohne garnis", "Gasthöfe", "Pensionen", "Ferienhäuser und Ferienwohnungen", "Jugendherbergen", "Campingplätze", "Sonstige"])
       .enter()
       .append("rect")
       .attr("x", 0)
@@ -63,7 +63,7 @@ const BarChart = ({ data }) => {
 
     legend
       .selectAll("text")
-      .data(["sales", "sales2", "sales3"])
+      .data(["Hotels", "Hotels ohne garnis", "Gasthöfe", "Pensionen", "Ferienhäuser und Ferienwohnungen", "Jugendherbergen", "Campingplätze", "Sonstige"])
       .enter()
       .append("text")
       .attr("x", 20)
@@ -71,6 +71,7 @@ const BarChart = ({ data }) => {
       .style("fill", "white")
       .style("font-size", "12px")
       .text(d => d);
+      
     // add axes
     svg
       .append("g")
