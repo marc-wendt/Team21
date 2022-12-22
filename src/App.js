@@ -5,31 +5,24 @@ import BarChartTest from "./BarChartTest";
 import { keys, keysBundesländer } from "./keys";
 import { colors, colorsBundesländer } from "./colors";
 import { getBundeslandData } from "./bundeslandData";
+import React, { useEffect, useState } from "react";
 
 function App() {
-  let testData = [
-    {
-      month: "Januar 19",
-      inland: 1720702,
-      ausland: 551704,
-    },
-    {
-      month: "Februar 19",
-      inland: 1890325,
-      ausland: 646833,
-    },
-    {
-      month: "März 19",
-      inland: 2088455,
-      ausland: 636272,
-    },
-  ];
+  const [testData, setTestData] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
-  // returns correct data for Bayern BUT doesn't "update testData fast enough", therefore chart isnt displayed with the correct values
-  getBundeslandData("Bayern").then((data) => {
-    console.log(data);
-    testData = data;
-  });
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    getBundeslandData("Bayern").then((data) => {
+      setTestData(data);
+      setLoading(false);
+    });
+  };
+
+  if (isLoading) return <div className="App">Loading...</div>;
 
   return (
     <div className="App">

@@ -309,13 +309,13 @@ export async function getBundeslandData(bundesland) {
     },
     {
       month: "November 22",
-      inland: parseInt(resIN[50]),
-      ausland: parseInt(resAUS[50]),
+      inland: 0,
+      ausland: 0,
     },
     {
       month: "Dezember 22",
-      inland: parseInt(resIN[51]),
-      ausland: parseInt(resAUS[51]),
+      inland: 0,
+      ausland: 0,
     }
   );
 
