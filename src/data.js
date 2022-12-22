@@ -18,7 +18,8 @@ const data = [
         sonstige_inland: 811092,
         sonstige_ausland: 42976,
         insgesamt_inland: 8269557,
-        insgesamt_ausland: 2178327
+        insgesamt_ausland: 2178327,
+        hotels_bayern: 2,
     },
     {
         month: "Februar 19",
@@ -39,7 +40,8 @@ const data = [
         sonstige_inland: 848106,
         sonstige_ausland: 72482,      
         insgesamt_inland: 8981595,
-        insgesamt_ausland: 2412635
+        insgesamt_ausland: 2412635,
+        hotels_bayern: 0,
     },
     {
         month: "März 19",
@@ -60,7 +62,8 @@ const data = [
         sonstige_inland: 1005424,
         sonstige_ausland: 65768,      
         insgesamt_inland: 10860477,
-        insgesamt_ausland: 2661789
+        insgesamt_ausland: 2661789,
+        hotels_bayern: 0,
     },
     {
         month: "April 19",
@@ -81,7 +84,8 @@ const data = [
         sonstige_inland: 1034327,
         sonstige_ausland: 81256,      
         insgesamt_inland: 12245011,
-        insgesamt_ausland: 3213581
+        insgesamt_ausland: 3213581,
+        hotels_bayern: 0,
     },
     {
         month: "Mai 19",
@@ -102,7 +106,8 @@ const data = [
         sonstige_inland: 1239722,
         sonstige_ausland: 66894,      
         insgesamt_inland: 14546488,
-        insgesamt_ausland: 3506208
+        insgesamt_ausland: 3506208,
+        hotels_bayern: 0,
     },
     {
         month: "Juni 19",
@@ -123,7 +128,8 @@ const data = [
         sonstige_inland: 1195441,
         sonstige_ausland: 60482,      
         insgesamt_inland: 15442086,
-        insgesamt_ausland: 3688472
+        insgesamt_ausland: 3688472,
+        hotels_bayern: 1,
     },
     {
         month: "Juli 19",
@@ -144,7 +150,8 @@ const data = [
         sonstige_inland: 1068275,
         sonstige_ausland: 96819,      
         insgesamt_inland: 15532877,
-        insgesamt_ausland: 4835445
+        insgesamt_ausland: 4835445,
+        hotels_bayern: 1,
     },
     {
         month: "August 19",
@@ -165,7 +172,8 @@ const data = [
         sonstige_inland: 960349,
         sonstige_ausland: 103268,      
         insgesamt_inland: 15543771,
-        insgesamt_ausland: 4477086
+        insgesamt_ausland: 4477086,
+        hotels_bayern: 2,
     },
     {
         month: "September 19",
@@ -186,7 +194,8 @@ const data = [
         sonstige_inland: 1202499,
         sonstige_ausland: 59926,      
         insgesamt_inland: 14899743,
-        insgesamt_ausland: 3640360
+        insgesamt_ausland: 3640360,
+        hotels_bayern: 2,
     },
     {
         month: "Oktober 19",
@@ -207,7 +216,8 @@ const data = [
         sonstige_inland: 1166786,
         sonstige_ausland: 73925,      
         insgesamt_inland: 14081360,
-        insgesamt_ausland: 3375588
+        insgesamt_ausland: 3375588,
+        hotels_bayern: 1,
     },
     {
         month: "November 19",
@@ -228,7 +238,8 @@ const data = [
         sonstige_inland: 974651,
         sonstige_ausland: 49751,      
         insgesamt_inland: 11207310,
-        insgesamt_ausland: 2720700
+        insgesamt_ausland: 2720700,
+        hotels_bayern: 1,
     },
     {
         month: "Dezember 19",
@@ -249,7 +260,8 @@ const data = [
         sonstige_inland: 637155,
         sonstige_ausland: 54074,      
         insgesamt_inland: 9853819,
-        insgesamt_ausland: 2880481
+        insgesamt_ausland: 2880481,
+        hotels_bayern: 1,
     },
 
     {
@@ -271,7 +283,8 @@ const data = [
         sonstige_inland: 814974,
         sonstige_ausland: 42376,
         insgesamt_inland: 8585513,
-        insgesamt_ausland: 2223025
+        insgesamt_ausland: 2223025,
+        hotels_bayern: 1,
     },
     {
         month: "Februar 20",
@@ -292,7 +305,8 @@ const data = [
         sonstige_inland: 858267,
         sonstige_ausland: 73963,
         insgesamt_inland: 9450189,
-        insgesamt_ausland: 2429056
+        insgesamt_ausland: 2429056,
+        hotels_bayern: 1,
     },
     {
         month: "März 20",
@@ -313,7 +327,8 @@ const data = [
         sonstige_inland: 469272,
         sonstige_ausland: 23503,
         insgesamt_inland: 4501361,
-        insgesamt_ausland: 762081
+        insgesamt_ausland: 762081,
+        hotels_bayern: 1,
     },
     {
         month: "April 20",
@@ -334,7 +349,8 @@ const data = [
         sonstige_inland: 61445,
         sonstige_ausland: 389,
         insgesamt_inland: 806932,
-        insgesamt_ausland: 86007
+        insgesamt_ausland: 86007,
+        hotels_bayern: 2,
     },
     {
         month: "Mai 20",
@@ -355,7 +371,8 @@ const data = [
         sonstige_inland: 162972,
         sonstige_ausland: 1730,
         insgesamt_inland: 3242049,
-        insgesamt_ausland: 176465
+        insgesamt_ausland: 176465,
+        hotels_bayern: 2,
     },
     {
         month: "Juni 20",
@@ -376,7 +393,8 @@ const data = [
         sonstige_inland: 451337,
         sonstige_ausland: 14160,
         insgesamt_inland: 8466773,
-        insgesamt_ausland: 645973
+        insgesamt_ausland: 645973,
+        hotels_bayern: 2,
     },
     {
         month: "Juli 20",
@@ -397,7 +415,8 @@ const data = [
         sonstige_inland: 638267,
         sonstige_ausland: 61660,
         insgesamt_inland: 11960352,
-        insgesamt_ausland: 1879476
+        insgesamt_ausland: 1879476,
+        hotels_bayern: 2,
     },
     {
         month: "August 20",
@@ -418,7 +437,8 @@ const data = [
         sonstige_inland: 725638,
         sonstige_ausland: 61747,
         insgesamt_inland: 13364601,
-        insgesamt_ausland: 1828043
+        insgesamt_ausland: 1828043,
+        hotels_bayern: 2,
     },
     {
         month: "September 20",
@@ -439,7 +459,8 @@ const data = [
         sonstige_inland: 787581,
         sonstige_ausland: 36696,
         insgesamt_inland: 12305756,
-        insgesamt_ausland: 1365840
+        insgesamt_ausland: 1365840,
+        hotels_bayern: 2,
     },
     {
         month: "Oktober 20",
@@ -460,7 +481,8 @@ const data = [
         sonstige_inland: 750596,
         sonstige_ausland: 15807,
         insgesamt_inland: 9567458,
-        insgesamt_ausland: 795982
+        insgesamt_ausland: 795982,
+        hotels_bayern: 2,
     },
     {
         month: "November 20",
@@ -481,7 +503,8 @@ const data = [
         sonstige_inland: 213399,
         sonstige_ausland: 1502,
         insgesamt_inland: 1998695,
-        insgesamt_ausland: 217358
+        insgesamt_ausland: 217358,
+        hotels_bayern: 2,
     },
     {
         month: "Dezember 20",
@@ -503,7 +526,8 @@ const data = [
         sonstige_inland: 129908,
         sonstige_ausland: 931,
         insgesamt_inland: 1323406,
-        insgesamt_ausland: 172016
+        insgesamt_ausland: 172016,
+        hotels_bayern: 2,
     },
 
     {
@@ -525,7 +549,8 @@ const data = [
         sonstige_inland: 129982,
         sonstige_ausland: 1293,
         insgesamt_inland: 1255865,
-        insgesamt_ausland: 171392
+        insgesamt_ausland: 171392,
+        hotels_bayern: 2,
     },
     {
         month: "Februar 21",
@@ -546,7 +571,8 @@ const data = [
         sonstige_inland: 138614,
         sonstige_ausland: 1223,
         insgesamt_inland: 1449375,
-        insgesamt_ausland: 186789
+        insgesamt_ausland: 186789,
+        hotels_bayern: 2,
     },
     {
         month: "März 21",
@@ -567,7 +593,8 @@ const data = [
         sonstige_inland: 188041,
         sonstige_ausland: 1395,
         insgesamt_inland: 2014357,
-        insgesamt_ausland: 231221
+        insgesamt_ausland: 231221,
+        hotels_bayern: 2,
     },
     {
         month: "April 21",
@@ -588,7 +615,8 @@ const data = [
         sonstige_inland: 172648,
         sonstige_ausland: 1638,
         insgesamt_inland: 1801955,
-        insgesamt_ausland: 217366
+        insgesamt_ausland: 217366,
+        hotels_bayern: 2,
     },
     {
         month: "Mai 21",
@@ -609,7 +637,8 @@ const data = [
         sonstige_inland: 242910,
         sonstige_ausland: 2081,
         insgesamt_inland: 3603962,
-        insgesamt_ausland: 289091
+        insgesamt_ausland: 289091,
+        hotels_bayern: 2,
     },
     {
         month: "Juni 21",
@@ -630,7 +659,8 @@ const data = [
         sonstige_inland: 582249,
         sonstige_ausland: 9460,
         insgesamt_inland: 8521492,
-        insgesamt_ausland: 681617
+        insgesamt_ausland: 681617,
+        hotels_bayern: 2,
     },
     {
         month: "Juli 21",
@@ -651,7 +681,8 @@ const data = [
         sonstige_inland: 827021,
         sonstige_ausland: 41193,
         insgesamt_inland: 12878434,
-        insgesamt_ausland: 1865792
+        insgesamt_ausland: 1865792,
+        hotels_bayern: 2,
     },
     {
         month: "August 21",
@@ -672,7 +703,8 @@ const data = [
         sonstige_inland: 874160,
         sonstige_ausland: 39953,
         insgesamt_inland: 14736493,
-        insgesamt_ausland: 2045639
+        insgesamt_ausland: 2045639,
+        hotels_bayern: 2,
     },
     {
         month: "September 21",
@@ -693,7 +725,8 @@ const data = [
         sonstige_inland: 981406,
         sonstige_ausland: 34652,
         insgesamt_inland: 13482061,
-        insgesamt_ausland: 1799229
+        insgesamt_ausland: 1799229,
+        hotels_bayern: 2,
     },
     {
         month: "Oktober 21",
@@ -714,7 +747,8 @@ const data = [
         sonstige_inland: 1042274,
         sonstige_ausland: 45528,
         insgesamt_inland: 13070630,
-        insgesamt_ausland: 1890203
+        insgesamt_ausland: 1890203,
+        hotels_bayern: 2,
     },
     {
         month: "November 21",
@@ -735,7 +769,8 @@ const data = [
         sonstige_inland: 709607,
         sonstige_ausland: 34046,
         insgesamt_inland: 7634714,
-        insgesamt_ausland: 1348840
+        insgesamt_ausland: 1348840,
+        hotels_bayern: 2,
     },
     {
         month: "Dezember 21",
@@ -756,7 +791,8 @@ const data = [
         sonstige_inland: 360058,
         sonstige_ausland: 20621,
         insgesamt_inland: 4942299,
-        insgesamt_ausland: 971120
+        insgesamt_ausland: 971120,
+        hotels_bayern: 2,
     },
 
     {
@@ -778,7 +814,8 @@ const data = [
         sonstige_inland: 426755,
         sonstige_ausland: 16310,
         insgesamt_inland: 4570494,
-        insgesamt_ausland: 698754
+        insgesamt_ausland: 698754,
+        hotels_bayern: 2,
     },
     {
         month: "Februar 22",
@@ -799,7 +836,8 @@ const data = [
         sonstige_inland: 490913,
         sonstige_ausland: 27135,
         insgesamt_inland: 5467856,
-        insgesamt_ausland: 1003237
+        insgesamt_ausland: 1003237,
+        hotels_bayern: 2,
     },
     {
         month: "März 22",
@@ -820,7 +858,8 @@ const data = [
         sonstige_inland: 696226,
         sonstige_ausland: 26647,
         insgesamt_inland: 7663755,
-        insgesamt_ausland: 1286876
+        insgesamt_ausland: 1286876,
+        hotels_bayern: 2,
     },
     {
         month: "April 22",
@@ -841,7 +880,8 @@ const data = [
         sonstige_inland: 863962,
         sonstige_ausland: 56115,
         insgesamt_inland: 10717693,
-        insgesamt_ausland: 1989689
+        insgesamt_ausland: 1989689,
+        hotels_bayern: 2,
     },
     {
         month: "Mai 22",
@@ -862,7 +902,8 @@ const data = [
         sonstige_inland: 1063327,
         sonstige_ausland: 58431,
         insgesamt_inland: 13715069,
-        insgesamt_ausland: 2492763
+        insgesamt_ausland: 2492763,
+        hotels_bayern: 2,
     },
     {
         month: "Juni 22",
@@ -883,7 +924,8 @@ const data = [
         sonstige_inland: 1087126,
         sonstige_ausland: 47616,
         insgesamt_inland: 14981244,
-        insgesamt_ausland: 2745098
+        insgesamt_ausland: 2745098,
+        hotels_bayern: 2,
     },
     {
         month: "Juli 22",
@@ -904,7 +946,8 @@ const data = [
         sonstige_inland: 983296,
         sonstige_ausland: 84060,
         insgesamt_inland: 15679340,
-        insgesamt_ausland: 4038230
+        insgesamt_ausland: 4038230,
+        hotels_bayern: 2,
     },
     {
         month: "August 22",
@@ -925,7 +968,8 @@ const data = [
         sonstige_inland: 913159,
         sonstige_ausland: 78825,
         insgesamt_inland: 15319688,
-        insgesamt_ausland: 3646206
+        insgesamt_ausland: 3646206,
+        hotels_bayern: 2,
     },
     {
         month: "September 22",

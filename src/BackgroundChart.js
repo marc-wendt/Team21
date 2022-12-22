@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
-const BarChart = ({ data, keys, colors }) => {
+const BackgroundChart = ({ data, keys, colors, bgKeys }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
@@ -20,12 +20,13 @@ const BarChart = ({ data, keys, colors }) => {
 
     const yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, d => d.hotels_inland + d.hotels_ohne_garnis_inland + d.gasthöfe_inland + d.pensionen_inland + d.ferienhäuser_und_ferienwohnungen_inland + d.jugendherbergen_inland + d.campingplätze_inland + d.sonstige_inland)])
+      // .domain([0, d3.max(data, d => d.hotels_badenWuerttemberg + d.hotels_bayern + d.hotels_brandenburg + d.hotels_bremen + d.hotels_hamburg + d.hotels_hessen + d.hotels_mecklenburgVorpommern + d.hotels_niedersachsen)])
+      .domain([0, d3.max(data, e => e.hotels_bayern)])
       .range([height, 0]);
 
     // create the stacked bars
     //const stackedData = d3.stack().keys(["hotels_inland", "hotels_ohne_garnis_inland", "gasthöfe_inland", "pensionen_inland", "ferienhäuser_und_ferienwohnungen_inland", "jugendherbergen_inland", "campingplätze_inland", "sonstige_inland"])(data);
-    const stackedData = d3.stack().keys(keys)(data)
+    const stackedData = d3.stack().keys(bgKeys)(data)
 
     // add bars
     svg
@@ -33,6 +34,8 @@ const BarChart = ({ data, keys, colors }) => {
       .data(stackedData)
       .enter()
       .append("g")
+      // .attr("fill", d.getElementsById => chooseColor(d[_].data.hotels_bayern))
+      // .attr("fill", d => chooseColor(d[1].data.hotels_bayern))
       .attr("fill", d => colors[d.key])
       .selectAll("rect")
       .data(d => d)
@@ -41,23 +44,7 @@ const BarChart = ({ data, keys, colors }) => {
       .attr("x", d => xScale(d.data.month))
       .attr("y", d => yScale(d[1]))
       .attr("height", d => yScale(d[0]) - yScale(d[1]))
-      .attr("width", xScale.bandwidth())
-    .append('title')
-    .text(function(d){
-      const value = d.data.hotels_bayern;
-      if (value == 0)
-      {
-        return "Keine Maßnahmen";
-      }
-      if(value == 1)
-      {
-        return "Maßnahmen vorhanden";
-      }
-      if(value == 2)
-      {
-        return "Ausgangssperre";
-      }
-    });
+      .attr("width", xScale.bandwidth());
 
     // add legend
     const legend = svg
@@ -101,8 +88,9 @@ const BarChart = ({ data, keys, colors }) => {
       .call(d3.axisLeft(yScale));
   }, [data]);
 
-  return (
-    <div style={{ width: width, height: height, margin: "auto" }}>
+
+  return ( 
+    <div style={{ width: width, height: height, margin: "auto", position: "absolute", opacity: 0.5, top: 100, right:450  }}>
     <svg ref={container} style={{
        overflow: "visible",
        marginRight: "0px",
@@ -131,5 +119,4 @@ const BarChart = ({ data, keys, colors }) => {
   );
 };
 
-
-export default BarChart;
+export default BackgroundChart;
