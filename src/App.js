@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <BarChart data={data} keys={keys} colors={colors} />
+        <BarChart data={data} keys={keys} colors={colors}/>
       </header>
     </div>
   );
