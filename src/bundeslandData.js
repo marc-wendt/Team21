@@ -9,7 +9,7 @@ export async function getBundeslandData(bundesland) {
   list.splice(0, 8);
   list.splice(list.length - 4, 4);
 
-  // // map Bundesland to index
+  // map Bundesland to index
   let i;
   switch (bundesland) {
     case "Baden-Württemberg":

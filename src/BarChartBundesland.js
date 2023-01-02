@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
-const BarChartTest = ({ data, keys, colors }) => {
+const BarChartBundesland = ({ data, keys, colors }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
@@ -18,10 +18,7 @@ const BarChartTest = ({ data, keys, colors }) => {
       .range([0, width])
       .padding(0.3);
 
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(data, (d) => d.inland + d.ausland)])
-      .range([height, 0]);
+    const yScale = d3.scaleLinear().domain([0, 4800000]).range([height, 0]);
 
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(data);
@@ -116,4 +113,4 @@ const BarChartTest = ({ data, keys, colors }) => {
   );
 };
 
-export default BarChartTest;
+export default BarChartBundesland;
