@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header" >
-        <BarChart data={data} keys={keys} colors={colors} />
+        <BarChart data={data} keys={keys} colors={colors} bgColors={backgroundColors} />
         {/* <BackgroundChart data={corona} keys={keysBackground} colors={backgroundColors} bgKeys={keysColorBackground}/> */}
         {/* <TryChart data={corona} keys={keysBackground} colors={backgroundColors}/> */}
 

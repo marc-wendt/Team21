@@ -990,7 +990,8 @@ const data = [
         sonstige_inland: 1110028,
         sonstige_ausland: 49650,
         insgesamt_inland: 14551763,
-        insgesamt_ausland: 3034343
+        insgesamt_ausland: 3034343,
+        hotels_bayern: 1,
     }
 ]
 
