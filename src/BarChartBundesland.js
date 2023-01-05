@@ -36,7 +36,16 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .append("rect")
       .attr("x", (d) => xScale(d.data.month))
       .attr("y", (d) => yScale(d[1]))
-      .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
+      .attr("height", function (d) {
+        if ((yScale(d[0]) != null) & (yScale(d[1]) != null)) {
+          return yScale(d[0]) - yScale(d[1]);
+        }
+        if (yScale(d[0]) != null) {
+          return yScale(d[0]) - height;
+        } else {
+          return height - yScale(d[1]);
+        }
+      })
       .attr("width", xScale.bandwidth());
 
     // add legend

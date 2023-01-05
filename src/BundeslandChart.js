@@ -5,9 +5,7 @@ import { colorsBundesländer } from "./colors";
 import { keysBundesländer } from "./keys";
 import { getBundeslandData } from "./bundeslandData";
 
-// TODO: - Error wenn nur Inland oder nur Ausland ausgewählt ist: <rect> attribute height: Expected length, "NaN"
-//         müsste an Zeile 39 in BarChartBundesland.js liegen
-//       - Loading für wechsel zwischen Charts zu lange
+// TODO: - Loading für wechsel zwischen Charts zu lange
 
 const BundeslandChart = () => {
   // Checkbox
