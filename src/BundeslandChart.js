@@ -22,9 +22,9 @@ import {
   brandenburg,
 } from "./bundeslandData";
 
-// TODO: - Component re-rendered nicht mehr korrekt, wenn setData() aufgerufen wird
+// TODO: - Filter für Ausland funktioniert nicht korrekt (Inland Balken werden immer noch angezeigt)
 
-const BundeslandChart = () => {
+function BundeslandChart() {
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
@@ -401,7 +401,20 @@ const BundeslandChart = () => {
   };
 
   useEffect(() => {
-    getBundeslandData("Bayern");
+    //getBundeslandData("Bayern");
+
+    if (checkedInland && !checkedAusland) {
+      setLoading(true);
+      getBundeslandInlandData("Bayern");
+    }
+    if (checkedInland && !checkedAusland) {
+      setLoading(true);
+      getBundeslandAuslandData("Bayern");
+    } else {
+      setLoading(true);
+      getBundeslandData("Bayern");
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -428,6 +441,6 @@ const BundeslandChart = () => {
       />
     </div>
   );
-};
+}
 
 export default BundeslandChart;

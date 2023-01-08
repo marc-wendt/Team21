@@ -9,7 +9,10 @@ const BarChartBundesland = ({ data, keys, colors }) => {
   const height = 500;
 
   useEffect(() => {
-    const svg = d3.select(container.current);
+    const svg = d3
+      .select(container.current)
+      .attr("width", width)
+      .attr("height", height);
 
     // create scales
     const xScale = d3
@@ -22,6 +25,8 @@ const BarChartBundesland = ({ data, keys, colors }) => {
 
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(data);
+
+    var rects = svg.selectAll("rect").data(data);
 
     // add bars
     svg
@@ -37,13 +42,16 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .attr("x", (d) => xScale(d.data.month))
       .attr("y", (d) => yScale(d[1]))
       .attr("height", function (d) {
-        if ((yScale(d[0]) != null) & (yScale(d[1]) != null)) {
-          return yScale(d[0]) - yScale(d[1]);
+        if ((d.data.inland == null) & (d.data.ausland != null)) {
+          // nur ausland ausgewählt
+          return height - yScale(d.data.ausland);
         }
-        if (yScale(d[0]) != null) {
-          return yScale(d[0]) - height;
+        if ((d.data.inland != null) & (d.data.ausland == null)) {
+          // nur inland ausgewählt
+          return yScale(d[0]) - yScale(d.data.inland);
         } else {
-          return height - yScale(d[1]);
+          // inland und ausland ausgewählt
+          return yScale(d[0]) - yScale(d[1]);
         }
       })
       .attr("width", xScale.bandwidth());
@@ -86,6 +94,8 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .attr("transform", "rotate(-65)");
 
     svg.append("g").call(d3.axisLeft(yScale));
+
+    rects.exit().remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
