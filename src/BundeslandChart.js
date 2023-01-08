@@ -402,7 +402,7 @@ const BundeslandChart = () => {
 
   useEffect(() => {
     getBundeslandData("Bayern");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) return <div className="App">Loading...</div>;

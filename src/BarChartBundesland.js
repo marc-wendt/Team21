@@ -18,10 +18,43 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .range([0, width])
       .padding(0.3);
 
-    const yScale = d3.scaleLinear().domain([0, 4800000]).range([height, 0]);
+    let xDi = width / data.length
+    console.log(xDi);
+
+    const yScale = d3.scaleLinear()
+    .domain([0, 4800000])
+    .range([height, 0]);
 
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(data);
+
+    let xIndex = 3.31;
+
+    data.forEach(element => {
+      svg.append('rect')
+          .attr('x', xIndex)
+          .attr('y', 0)
+          .attr('width', 25.5)
+          .attr('height', 500)
+          .style('fill',
+          function(d) {
+          let value = element.hotels_bayern;
+            if (value == 0)
+            {
+              return "#00FF00";
+            }
+            if(value == 1)
+            {
+              return "#FFFF00";
+            }
+            if(value == 2)
+            {
+              return "#FF0000";
+            }
+          }
+    ); 
+          xIndex += 19;
+    });
 
     // add bars
     svg
@@ -47,6 +80,7 @@ const BarChartBundesland = ({ data, keys, colors }) => {
         }
       })
       .attr("width", xScale.bandwidth());
+    
 
     // add legend
     const legend = svg
@@ -86,7 +120,7 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .attr("transform", "rotate(-65)");
 
     svg.append("g").call(d3.axisLeft(yScale));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [data]);
 
   return (
