@@ -39,9 +39,11 @@ function GermanyMap() {
               .attr('stroke-width', 1) // Initial stroke width
               .on('click', function(d) {
                 // Check if the state that was clicked is the same as the one with the clicked class
+                // -- function remove clicked state 
                 if (this === d3.select('.clicked').node()) {
                   d3.select(this).attr('stroke-width', 1).classed('clicked', false);
                 } else {
+                  // -- funciton set clicked state or update clicked state
                   d3.select('.clicked').attr('stroke-width', 1).classed('clicked', false);
                   d3.select(this).attr('stroke-width', 3).classed('clicked', true);
                 }

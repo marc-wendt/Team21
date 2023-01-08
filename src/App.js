@@ -8,9 +8,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <BundeslandChart />
+        <GermanyMap />
 
       </header>
-      <GermanyMap />
+
     </div>
   );
 }
