@@ -18,9 +18,6 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .range([0, width])
       .padding(0.3);
 
-    let xDi = width / data.length
-    console.log(xDi);
-
     const yScale = d3.scaleLinear()
     .domain([0, 4800000])
     .range([height, 0]);
@@ -34,9 +31,10 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       svg.append('rect')
           .attr('x', xIndex)
           .attr('y', 0)
-          .attr('width', 25.5)
+          .attr('width', 23)
           .attr('height', 500)
           .style('fill',
+          //Colored background 
           function(d) {
           let value = element.hotels_bayern;
             if (value == 0)
@@ -51,9 +49,12 @@ const BarChartBundesland = ({ data, keys, colors }) => {
             {
               return "#FF0000";
             }
+            else {
+              return "#FFFFFF30";
+            }
           }
     ); 
-          xIndex += 19;
+          xIndex += 20.7;
     });
 
     // add bars
@@ -79,8 +80,22 @@ const BarChartBundesland = ({ data, keys, colors }) => {
           return height - yScale(d[1]);
         }
       })
-      .attr("width", xScale.bandwidth());
-    
+      .attr("width", xScale.bandwidth())
+    //Text Feld auf Bar
+    .append('title')
+    .text(function(d){
+      const value = d.data.hotels_bayern;
+      if(value == 1)
+      {
+        return "Maßnahmen vorhanden";
+      }
+      if(value == 2)
+      {
+        return "Ausgangssperre";
+      }
+      return "Keine Maßnahmen";
+    });
+
 
     // add legend
     const legend = svg
