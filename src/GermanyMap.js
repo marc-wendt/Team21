@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import * as d3 from 'd3';
+import { StateContext } from './App';
 
 function GermanyMap() {
   const [svg, setSvg] = useState(null);
+  const {currentState, changeState} = useContext(StateContext);
 
   useEffect(() => {
     let newSvg;
@@ -42,21 +44,28 @@ function GermanyMap() {
                 // -- function remove clicked state 
                 if (this === d3.select('.clicked').node()) {
                   d3.select(this).attr('stroke-width', 1).classed('clicked', false);
+                  changeState("")
                 } else {
                   // -- funciton set clicked state or update clicked state
                   d3.select('.clicked').attr('stroke-width', 1).classed('clicked', false);
                   d3.select(this).attr('stroke-width', 3).classed('clicked', true);
+                  changeState(d.target.__data__.properties.name);
                 }
-                console.log(d.target.__data__.properties.name);
               });
           }
         });
       
       setSvg(newSvg);
     }
-  }, [svg]);
+  }, [svg, changeState]);
+
+  useEffect(() => {
+    console.log("CURRENT STATE: "+(currentState));
+  }, [currentState]);
+  
 
   return <div id="map" />;
+
 }
 
 export default GermanyMap;
