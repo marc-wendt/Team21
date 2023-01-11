@@ -1,6 +1,7 @@
 import BarChartBundesland from "./BarChartBundesland";
 import CheckBox from "./CheckBox";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { StateContext } from './App';
 import { colorsBundesländer } from "./colors";
 import { keysBundesländer } from "./keys";
 import {
@@ -29,6 +30,12 @@ function BundeslandChart(bundesland) {
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
+  // eslint-disable-next-line
+  const {currentState, changeState} = useContext(StateContext);
+
+  useEffect(() => {
+    console.log("CURRENT STATE CHART CLASS: "+(currentState));
+  }, [currentState]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {

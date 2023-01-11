@@ -1,13 +1,26 @@
 import "./App.css";
 //import BarChart from "./BarChart";
 import BundeslandChart from "./BundeslandChart";
+import GermanyMap from "./GermanyMap"
+import React, { useState } from 'react';
+
+export const StateContext = React.createContext();
+
+
 
 function App() {
+
+  const [currentState, setCurrentState] = useState("Nothing");
+
   return (
     <div className="App">
       <header className="App-header">
-        <BundeslandChart />
+        <StateContext.Provider value={{currentState, changeState:setCurrentState}}>
+          <BundeslandChart  value={{currentState, changeState:setCurrentState}}/>
+          <GermanyMap  />
+        </StateContext.Provider>
       </header>
+
     </div>
   );
 }
