@@ -22,11 +22,9 @@ import {
   brandenburg,
 } from "./bundeslandData";
 
-// TODO: - Filter für Ausland funktioniert nicht korrekt (Inland Balken werden immer noch angezeigt)
-
 function BundeslandChart(bundesland) {
   // const to control which Bundesland gets displayed - remove once selection with interactive map works
-  bundesland = "Berlin";
+  bundesland = "Bayern";
 
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
