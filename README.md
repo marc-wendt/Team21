@@ -29,4 +29,4 @@ Unsere Forschungsfrage: Hatte Corona einen Einfluss auf das Urlaubsverhalten der
 - [ ] **Switchfunktion** um dynamisch zwischen einem **gestapelten und gruppierten Balkendiagramm** wechseln zu können
 - [ ] **Switchfunktion** um dynamisch Coronamaßnahmen ein- und ausblenden zu können
 ## Gantt Chart
-![Alt text](./InfoVis_-_Gantt_Chart.jpg?raw=true)
+![Alt text](./Gantt_Chart_update.jpg?raw=true)
