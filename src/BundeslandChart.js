@@ -1,9 +1,11 @@
 import BarChartBundesland from "./BarChartBundesland";
+import BarChart from "./BarChart";
 import CheckBox from "./CheckBox";
 import React, { useEffect, useState, useContext } from "react";
 import { StateContext } from "./App";
-import { colorsBundesländer } from "./colors";
-import { keysBundesländer } from "./keys";
+import { colors, colorsBundesländer } from "./colors";
+import { keys, keysBundesländer } from "./keys";
+import { data as dataGermany } from "./data";
 import {
   badenWürttemberg,
   bayern,
@@ -26,6 +28,19 @@ import {
 function BundeslandChart(bundesland) {
   // const to control which Bundesland gets displayed - remove once selection with interactive map works
   //bundesland = "Bayern";
+  const [isLoading, setLoading] = useState(true);
+  const [checkedChart, setCheckedChart] = useState(true);
+
+  // Checkbox Action Handler
+  const handleChangeChart = () => {
+    setCheckedChart(!checkedChart);
+
+    if (!checkedChart) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  };
 
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
@@ -35,6 +50,13 @@ function BundeslandChart(bundesland) {
 
   useEffect(() => {
     console.log("CURRENT STATE CHART CLASS: " + currentState);
+
+    // if (currentState !== "") {
+    //   console.log(currentChart);
+    //   isLoading(false);
+    // } else {
+    //   isLoading(true);
+    // }
 
     if (checkedInland && !checkedAusland) {
       getBundeslandInlandData(currentState);
@@ -270,10 +292,25 @@ function BundeslandChart(bundesland) {
     setData(arr);
   };
 
-  useEffect(() => {
-    getBundeslandData("Bayern");
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   setChart(true);
+  //   //getBundeslandData("Bayern");
+  //   // eslint-disable-next-line
+  // }, []);
+
+  if (isLoading)
+    return (
+      <div>
+        <BarChart data={dataGermany} keys={keys} colors={colors} />
+        <br></br>
+        <br></br>
+        <CheckBox
+          label="Switch Chart"
+          value={checkedChart}
+          onChange={handleChangeChart}
+        />
+      </div>
+    );
 
   return (
     <div>
@@ -293,6 +330,13 @@ function BundeslandChart(bundesland) {
         label="Ausland"
         value={checkedAusland}
         onChange={handleChangeAusland}
+      />
+      <br></br>
+      <br></br>
+      <CheckBox
+        label="Switch Chart"
+        value={checkedChart}
+        onChange={handleChangeChart}
       />
     </div>
   );
