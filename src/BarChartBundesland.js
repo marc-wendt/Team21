@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
+// TODO: - Error message "Error: <rect> attribute height: Expected length, "NaN" when updating bar data (cause: line 95)
+
 const BarChartBundesland = ({ data, keys, colors }) => {
   const container = useRef(null);
 
@@ -9,7 +11,10 @@ const BarChartBundesland = ({ data, keys, colors }) => {
   const height = 500;
 
   useEffect(() => {
-    const svg = d3.select(container.current);
+    const svg = d3
+      .select(container.current)
+      .attr("width", width)
+      .attr("height", height);
 
     // create scales
     const xScale = d3
@@ -71,13 +76,12 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .attr("x", (d) => xScale(d.data.month))
       .attr("y", (d) => yScale(d[1]))
       .attr("height", function (d) {
-        if ((yScale(d[0]) != null) & (yScale(d[1]) != null)) {
-          return yScale(d[0]) - yScale(d[1]);
-        }
-        if (yScale(d[0]) != null) {
-          return yScale(d[0]) - height;
+        if ((d.data.inland == null) & (d.data.ausland != null)) {
+          // nur ausland ausgewählt
+          return height - yScale(d.data.ausland);
         } else {
-          return height - yScale(d[1]);
+          // inland und ausland ausgewählt
+          return yScale(d[0]) - yScale(d[1]);
         }
       })
       .attr("width", xScale.bandwidth())
@@ -135,7 +139,24 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .attr("transform", "rotate(-65)");
 
     svg.append("g").call(d3.axisLeft(yScale));
-    // eslint-disable-next-line
+
+    // update bar data
+    rects
+      .data(data)
+      .merge(rects)
+      .attr("x", xScale(data.month))
+      .attr("y", yScale(data[1]))
+      .attr("height", function (d) {
+        if ((data.inland === 0) & (data.ausland !== null)) {
+          return height - yScale(data.ausland);
+        } else {
+          return height - yScale(data[1]);
+        }
+      })
+      .attr("width", xScale.bandwidth());
+
+    rects.exit().remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (

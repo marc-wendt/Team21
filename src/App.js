@@ -1,25 +1,26 @@
-import './App.css';
-import BarChart from './BarChart';
-import data from "./data";
-import keys from "./keys";
-import colors from "./colors";
-import corona from "./corona";
-import BackgroundChart from './BackgroundChart';
-import keysBackground from "./keysBackground";
-import backgroundColors from "./backgroundColors";
-import keysColorBackground from './backgroundColorKeys';
-import TryChart from './try';
+import "./App.css";
+//import BarChart from "./BarChart";
 import BundeslandChart from "./BundeslandChart";
+import GermanyMap from "./GermanyMap"
+import React, { useState } from 'react';
+
+export const StateContext = React.createContext();
+
+
 
 function App() {
+
+  const [currentState, setCurrentState] = useState("Nothing");
+
   return (
     <div className="App">
-      <header className="App-header" >
-        {/*<BarChart data={data} keys={keys} colors={colors} bgColors={backgroundColors} /> */}
-        {/* <BackgroundChart data={corona} keys={keysBackground} colors={backgroundColors} bgKeys={keysColorBackground}/> */}
-        {/* <TryChart data={corona} keys={keysBackground} colors={backgroundColors}/> */}
-        <BundeslandChart />
+      <header className="App-header">
+        <StateContext.Provider value={{currentState, changeState:setCurrentState}}>
+          <BundeslandChart  value={{currentState, changeState:setCurrentState}}/>
+          <GermanyMap  />
+        </StateContext.Provider>
       </header>
+
     </div>
   );
 }

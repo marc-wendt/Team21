@@ -1,6 +1,7 @@
 import BarChartBundesland from "./BarChartBundesland";
 import CheckBox from "./CheckBox";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { StateContext } from "./App";
 import { colorsBundesländer } from "./colors";
 import { keysBundesländer } from "./keys";
 import {
@@ -22,27 +23,40 @@ import {
   brandenburg,
 } from "./bundeslandData";
 
-// TODO: - Component re-rendered nicht mehr korrekt, wenn setData() aufgerufen wird
+function BundeslandChart(bundesland) {
+  // const to control which Bundesland gets displayed - remove once selection with interactive map works
+  //bundesland = "Bayern";
 
-const BundeslandChart = () => {
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
+  // eslint-disable-next-line
+  const { currentState, changeState } = useContext(StateContext);
+
+  useEffect(() => {
+    console.log("CURRENT STATE CHART CLASS: " + currentState);
+
+    if (checkedInland && !checkedAusland) {
+      getBundeslandInlandData(currentState);
+    }
+    if (checkedInland && !checkedAusland) {
+      getBundeslandAuslandData(currentState);
+    } else {
+      getBundeslandData(currentState);
+    }
+  }, [currentState, checkedAusland, checkedInland]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {
     setCheckedInland(!checkedInland);
 
     if (!checkedInland && !checkedAusland) {
-      setLoading(true);
-      getBundeslandInlandData("Bayern");
+      getBundeslandInlandData(currentState);
     }
     if (checkedInland && checkedAusland) {
-      setLoading(true);
-      getBundeslandAuslandData("Bayern");
+      getBundeslandAuslandData(currentState);
     } else {
-      setLoading(true);
-      getBundeslandData("Bayern");
+      getBundeslandData(currentState);
     }
   };
 
@@ -50,22 +64,19 @@ const BundeslandChart = () => {
     setCheckedAusland(!checkedAusland);
 
     if (!checkedAusland && !checkedInland) {
-      setLoading(true);
-      getBundeslandAuslandData("Bayern");
+      getBundeslandAuslandData(currentState);
     }
     if (checkedAusland && checkedInland) {
-      setLoading(true);
-      getBundeslandInlandData("Bayern");
+      getBundeslandInlandData(currentState);
     } else {
-      setLoading(true);
-      getBundeslandData("Bayern");
+      getBundeslandData(currentState);
     }
   };
 
   // Data
   const [data, setData] = useState([]);
-  const [isLoading, setLoading] = useState(true);
 
+  // get data (ausland and inland) for specific bundesland
   const getBundeslandData = (bundesland) => {
     switch (bundesland) {
       case "Baden-Württemberg":
@@ -119,293 +130,150 @@ const BundeslandChart = () => {
       default:
         break;
     }
-    setLoading(false);
   };
 
+  // get only inland data for specific bundesland
   const getBundeslandInlandData = (bundesland) => {
-    let d = [];
+    let d;
+
     switch (bundesland) {
       case "Baden-Württemberg":
-        badenWürttemberg.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = badenWürttemberg;
         break;
       case "Bayern":
-        bayern.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = bayern;
         break;
       case "Berlin":
-        berlin.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = berlin;
         break;
       case "Brandenburg":
-        brandenburg.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = brandenburg;
         break;
       case "Bremen":
-        bremen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = bremen;
         break;
       case "Hamburg":
-        hamburg.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = hamburg;
         break;
       case "Hessen":
-        hessen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = hessen;
         break;
       case "Mecklenburg-Vorpommern":
-        mecklenburgVorpommern.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = mecklenburgVorpommern;
         break;
       case "Niedersachsen":
-        niedersachsen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = niedersachsen;
         break;
       case "Nordrhein-Westfalen":
-        nordrheinWestfalen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = nordrheinWestfalen;
         break;
       case "Rheinland-Pfalz":
-        rheinlandPfalz.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = rheinlandPfalz;
         break;
       case "Saarland":
-        saarland.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = saarland;
         break;
       case "Sachsen-Anhalt":
-        sachsenAnhalt.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = sachsenAnhalt;
         break;
       case "Sachsen":
-        sachsen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = sachsen;
         break;
       case "Schleswig-Holstein":
-        schleswigHolstein.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = schleswigHolstein;
         break;
       case "Thüringen":
-        thüringen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            inland: el.inland,
-          });
-        });
+        d = thüringen;
         break;
       default:
         break;
     }
 
-    setData(d);
-    setLoading(false);
+    let arr = [];
+    d.forEach(function (el) {
+      arr.push({
+        month: el.month,
+        inland: el.inland,
+        ausland: 0,
+      });
+    });
+
+    setData(arr);
   };
 
+  // get only ausland data for specific bundesland
   const getBundeslandAuslandData = (bundesland) => {
-    let d = [];
+    let d;
+
     switch (bundesland) {
       case "Baden-Württemberg":
-        badenWürttemberg.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = badenWürttemberg;
         break;
       case "Bayern":
-        bayern.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = bayern;
         break;
       case "Berlin":
-        berlin.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = berlin;
         break;
       case "Brandenburg":
-        brandenburg.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = brandenburg;
         break;
       case "Bremen":
-        bremen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = bremen;
         break;
       case "Hamburg":
-        hamburg.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = hamburg;
         break;
       case "Hessen":
-        hessen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = hessen;
         break;
       case "Mecklenburg-Vorpommern":
-        mecklenburgVorpommern.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = mecklenburgVorpommern;
         break;
       case "Niedersachsen":
-        niedersachsen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = niedersachsen;
         break;
       case "Nordrhein-Westfalen":
-        nordrheinWestfalen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = nordrheinWestfalen;
         break;
       case "Rheinland-Pfalz":
-        rheinlandPfalz.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = rheinlandPfalz;
         break;
       case "Saarland":
-        saarland.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = saarland;
         break;
       case "Sachsen-Anhalt":
-        sachsenAnhalt.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = sachsenAnhalt;
         break;
       case "Sachsen":
-        sachsen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = sachsen;
         break;
       case "Schleswig-Holstein":
-        schleswigHolstein.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = schleswigHolstein;
         break;
       case "Thüringen":
-        thüringen.forEach(function (el) {
-          d.push({
-            month: el.month,
-            ausland: el.ausland,
-          });
-        });
+        d = thüringen;
         break;
       default:
         break;
     }
 
-    setData(d);
-    setLoading(false);
+    let arr = [];
+    d.forEach(function (el) {
+      arr.push({
+        month: el.month,
+        inland: 0,
+        ausland: el.ausland,
+      });
+    });
+
+    setData(arr);
   };
 
   useEffect(() => {
     getBundeslandData("Bayern");
     // eslint-disable-next-line
   }, []);
-
-  if (isLoading) return <div className="App">Loading...</div>;
 
   return (
     <div>
@@ -428,6 +296,6 @@ const BundeslandChart = () => {
       />
     </div>
   );
-};
+}
 
 export default BundeslandChart;
