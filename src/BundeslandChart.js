@@ -1,7 +1,7 @@
 import BarChartBundesland from "./BarChartBundesland";
 import CheckBox from "./CheckBox";
 import React, { useEffect, useState, useContext } from "react";
-import { StateContext } from './App';
+import { StateContext } from "./App";
 import { colorsBundesländer } from "./colors";
 import { keysBundesländer } from "./keys";
 import {
@@ -25,29 +25,38 @@ import {
 
 function BundeslandChart(bundesland) {
   // const to control which Bundesland gets displayed - remove once selection with interactive map works
-  bundesland = "Bayern";
+  //bundesland = "Bayern";
 
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
   // eslint-disable-next-line
-  const {currentState, changeState} = useContext(StateContext);
+  const { currentState, changeState } = useContext(StateContext);
 
   useEffect(() => {
-    console.log("CURRENT STATE CHART CLASS: "+(currentState));
-  }, [currentState]);
+    console.log("CURRENT STATE CHART CLASS: " + currentState);
+
+    if (checkedInland && !checkedAusland) {
+      getBundeslandInlandData(currentState);
+    }
+    if (checkedInland && !checkedAusland) {
+      getBundeslandAuslandData(currentState);
+    } else {
+      getBundeslandData(currentState);
+    }
+  }, [currentState, checkedAusland, checkedInland]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {
     setCheckedInland(!checkedInland);
 
     if (!checkedInland && !checkedAusland) {
-      getBundeslandInlandData(bundesland);
+      getBundeslandInlandData(currentState);
     }
     if (checkedInland && checkedAusland) {
-      getBundeslandAuslandData(bundesland);
+      getBundeslandAuslandData(currentState);
     } else {
-      getBundeslandData(bundesland);
+      getBundeslandData(currentState);
     }
   };
 
@@ -55,12 +64,12 @@ function BundeslandChart(bundesland) {
     setCheckedAusland(!checkedAusland);
 
     if (!checkedAusland && !checkedInland) {
-      getBundeslandAuslandData(bundesland);
+      getBundeslandAuslandData(currentState);
     }
     if (checkedAusland && checkedInland) {
-      getBundeslandInlandData(bundesland);
+      getBundeslandInlandData(currentState);
     } else {
-      getBundeslandData(bundesland);
+      getBundeslandData(currentState);
     }
   };
 
@@ -262,15 +271,7 @@ function BundeslandChart(bundesland) {
   };
 
   useEffect(() => {
-    if (checkedInland && !checkedAusland) {
-      getBundeslandInlandData(bundesland);
-    }
-    if (checkedInland && !checkedAusland) {
-      getBundeslandAuslandData(bundesland);
-    } else {
-      getBundeslandData(bundesland);
-    }
-
+    getBundeslandData("Bayern");
     // eslint-disable-next-line
   }, []);
 
