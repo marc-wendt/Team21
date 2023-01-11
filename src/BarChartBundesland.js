@@ -42,13 +42,13 @@ const BarChartBundesland = ({ data, keys, colors }) => {
           //Colored background
           function (d) {
             let value = element.hotels;
-            if (value == 0) {
+            if (value === 0) {
               return "#00FF00";
             }
-            if (value == 1) {
+            if (value === 1) {
               return "#FFFF00";
             }
-            if (value == 2) {
+            if (value === 2) {
               return "#FF0000";
             } else {
               return "#FFFFFF00";
@@ -87,10 +87,10 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .append("title")
       .text(function (d) {
         const value = d.data.hotels;
-        if (value == 1) {
+        if (value === 1) {
           return "Maßnahmen vorhanden";
         }
-        if (value == 2) {
+        if (value === 2) {
           return "Ausgangssperre";
         }
         return "Keine Maßnahmen";
