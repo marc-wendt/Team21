@@ -10,6 +10,6 @@ export const colors = {
 };
 
 export const colorsBundesländer = {
-  inland: "#8dd3c7",
-  ausland: "#ffffb3",
+  inland: "#1f78b4",
+  ausland: "#80b1d3",
 };
