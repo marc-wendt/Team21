@@ -1,44 +1,59 @@
 .App {
-  text-align: center;
+  color: grey;
+  display: grid; 
+  grid-auto-columns: 300px; 
+  grid-template-columns: 1420px 480px; 
+  grid-template-rows: 120px 650px 300px; 
+  background-color: grey;
+  grid-template-areas: 
+    "header header"  
+    "chart map"
+    "description filter"; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header { 
+  grid-area: header;
+  padding-bottom: 10px;
+  padding-left: 100px;
+  background-color: grey;
+  font-size: xx-large;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.chart { 
+  grid-area: chart;
   min-height: 100vh;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 100px;
+  padding-left: 100px;
   background-color: grey;
 }
 
-.App-link {
-  color: #61dafb;
+.map { 
+  grid-area: map; 
+  display: flex;
+  background-color: grey;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.description { 
+  grid-area: description; 
+  background-color: grey;
+  font-size: larger;
+  color: white;
+  padding-top: 10px;
+  padding-left: 100px;
+}
+
+.filter { 
+  grid-area: filter;
+  background-color: grey;
 }
 
 path.clicked {
-  stroke: red;
+  stroke: rgb(25, 96, 189);
+  stroke-width: 3px;
 }

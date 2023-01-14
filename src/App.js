@@ -12,14 +12,35 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <StateContext.Provider value={{ currentState, changeState: setCurrentState }}>
-          <MapContext.Provider value={{ checkedMap, setCheckedMap: setCheckedMap }}>
-          <BundeslandChart/>
-          <GermanyMap />
+      <div className="header">
+        <p>Team21</p>
+      </div>
+      <div className="chart">
+        <StateContext.Provider
+          value={{ currentState, changeState: setCurrentState }}
+        >
+          <MapContext.Provider
+            value={{ checkedMap, setCheckedMap: setCheckedMap }}
+          >
+            <BundeslandChart />
           </MapContext.Provider>
         </StateContext.Provider>
-      </header>
+      </div>
+      <div className="map">
+        <StateContext.Provider
+          value={{ currentState, changeState: setCurrentState }}
+        >
+          <MapContext.Provider
+            value={{ checkedMap, setCheckedMap: setCheckedMap }}
+          >
+            <GermanyMap />
+          </MapContext.Provider>
+        </StateContext.Provider>
+      </div>
+      <div className="description">
+        <p>Beschreibungstext zu Daten</p>
+      </div>
+      <div className="filter"></div>
     </div>
   );
 }
