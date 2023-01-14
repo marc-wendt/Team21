@@ -25,9 +25,7 @@ import {
   brandenburg,
 } from "./bundeslandData";
 
-function BundeslandChart(bundesland) {
-  // const to control which Bundesland gets displayed - remove once selection with interactive map works
-  //bundesland = "Bayern";
+function BundeslandChart() {
   const [isLoading, setLoading] = useState(true);
   // eslint-disable-next-line
   const [checkedChart, setCheckedChart] = useState(true);
@@ -40,33 +38,27 @@ function BundeslandChart(bundesland) {
   useEffect(() => {
     if (checkedMap) {
       setLoading(false);
-      setCheckedChart(true)
+      setCheckedChart(true);
     } else {
       setLoading(true);
     }
   }, [checkedMap]);
 
-
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
 
-
   useEffect(() => {
-
-    // if (currentState !== "") {
-    //   console.log(currentChart);
-    //   isLoading(false);
-    // } else {
-    //   isLoading(true);
-    // }
-
     if (checkedInland && !checkedAusland) {
       getBundeslandInlandData(currentState);
     }
-    if (checkedInland && !checkedAusland) {
+    if (!checkedInland && checkedAusland) {
       getBundeslandAuslandData(currentState);
-    } else {
+    }
+    if (checkedInland && checkedAusland) {
+      getBundeslandData(currentState);
+    }
+    if (!checkedInland && !checkedAusland) {
       getBundeslandData(currentState);
     }
   }, [currentState, checkedAusland, checkedInland]);
@@ -295,19 +287,12 @@ function BundeslandChart(bundesland) {
     setData(arr);
   };
 
-  // useEffect(() => {
-  //   setChart(true);
-  //   //getBundeslandData("Bayern");
-  //   // eslint-disable-next-line
-  // }, []);
-
   if (isLoading)
     return (
       <div>
         <BarChart data={dataGermany} keys={keys} colors={colors} />
         <br></br>
         <br></br>
-
       </div>
     );
 
@@ -330,9 +315,6 @@ function BundeslandChart(bundesland) {
         value={checkedAusland}
         onChange={handleChangeAusland}
       />
-      <br></br>
-      <br></br>
-
     </div>
   );
 }

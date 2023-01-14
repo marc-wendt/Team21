@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
-// TODO: - Error message "Error: <rect> attribute height: Expected length, "NaN" when updating bar data (cause: line 95)
+// TODO: y axes bei switch zwischen in- und ausland beibehalten (Verhältnis gleich lassen um vergleichbarer zu sein)
 
 const BarChartBundesland = ({ data, keys, colors }) => {
   const container = useRef(null);
@@ -23,7 +23,10 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .range([0, width])
       .padding(0.3);
 
-    const yScale = d3.scaleLinear().domain([0, 4800000]).range([height, 0]);
+    const yScale = d3
+      .scaleLinear()
+      .domain([0, d3.max(data, (d) => d.inland + d.ausland)])
+      .range([height, 0]);
 
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(data);
@@ -43,13 +46,13 @@ const BarChartBundesland = ({ data, keys, colors }) => {
           function (d) {
             let value = element.hotels;
             if (value === 0) {
-              return "#00FF00";
+              return "#ADD09A";
             }
             if (value === 1) {
-              return "#FFFF00";
+              return "#E2CE9D";
             }
             if (value === 2) {
-              return "#FF0000";
+              return "#D09595";
             } else {
               return "#FFFFFF00";
             }
@@ -133,19 +136,24 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .attr("dx", "-.8em")
       .attr("transform", "rotate(-65)");
 
-    svg.append("g").call(d3.axisLeft(yScale));
+    const yAxis = d3.axisLeft(yScale);
+
+    svg.select(".y-axis").remove();
+    svg.append("g").attr("class", "y-axis").call(yAxis);
 
     // update bar data
     rects
       .data(data)
       .merge(rects)
-      .attr("x", xScale(data.month))
-      .attr("y", yScale(data[1]))
+      .attr("x", (d) => xScale(d.month))
+      .attr("y", (d) => yScale(d[1]))
       .attr("height", function (d) {
-        if ((data.inland === 0) & (data.ausland !== null)) {
-          return height - yScale(data.ausland);
+        if ((d.inland === 0) & (d.ausland !== null)) {
+          return height - yScale(d.inland);
         } else {
-          return height - yScale(data[1]);
+          return (
+            height - yScale(d.inland) && yScale(d.ausland) - yScale(d.ausland)
+          );
         }
       })
       .attr("width", xScale.bandwidth());
