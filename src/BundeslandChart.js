@@ -47,48 +47,62 @@ function BundeslandChart() {
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
+  const [checkedCoronaBg, setCheckedCoronaBg] = useState(true);
 
   useEffect(() => {
-    if (checkedInland && !checkedAusland) {
-      getBundeslandInlandData(currentState);
-    }
-    if (!checkedInland && checkedAusland) {
+    if((checkedAusland && checkedInland) || (!checkedAusland && !checkedInland)) {
+      getBundeslandData(currentState);
+    } else if(checkedAusland && !checkedInland) {
       getBundeslandAuslandData(currentState);
-    }
-    if (checkedInland && checkedAusland) {
+    } else if(checkedInland && !checkedAusland) {
+      getBundeslandInlandData(currentState);
+    } else {
       getBundeslandData(currentState);
     }
-    if (!checkedInland && !checkedAusland) {
-      getBundeslandData(currentState);
-    }
-  }, [currentState, checkedAusland, checkedInland]);
+  }, [currentState, checkedAusland, checkedInland, checkedCoronaBg]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {
     setCheckedInland(!checkedInland);
 
-    if (!checkedInland && !checkedAusland) {
-      getBundeslandInlandData(currentState);
-    }
-    if (checkedInland && checkedAusland) {
-      getBundeslandAuslandData(currentState);
-    } else {
-      getBundeslandData(currentState);
-    }
+    // if (!checkedInland && !checkedAusland) {
+    //   getBundeslandInlandData(currentState);
+    // }
+    // if (checkedInland && checkedAusland) {
+    //   getBundeslandAuslandData(currentState);
+    // } else {
+    //   getBundeslandData(currentState);
+    // }
   };
 
   const handleChangeAusland = () => {
     setCheckedAusland(!checkedAusland);
 
-    if (!checkedAusland && !checkedInland) {
-      getBundeslandAuslandData(currentState);
-    }
-    if (checkedAusland && checkedInland) {
-      getBundeslandInlandData(currentState);
-    } else {
-      getBundeslandData(currentState);
-    }
+    // if (!checkedAusland && !checkedInland) {
+    //   getBundeslandAuslandData(currentState);
+    // }
+    // if (checkedAusland && checkedInland) {
+    //   getBundeslandInlandData(currentState);
+    // } else {
+    //   getBundeslandData(currentState);
+    // }
   };
+
+  const handleChangeCoronaBg = () => {
+    setCheckedCoronaBg(!checkedCoronaBg);
+    
+    // setData([])
+    
+    // if((checkedAusland && checkedInland) || (!checkedAusland && !checkedInland)) {
+    //   getBundeslandData(currentState);
+    // } else if(checkedAusland && !checkedInland) {
+    //   getBundeslandAuslandData(currentState);
+    // } else if(checkedInland && !checkedAusland) {
+    //   getBundeslandInlandData(currentState);
+    // } else {
+    //   getBundeslandData(currentState);
+    // }
+  }
 
   // Data
   const [data, setData] = useState([]);
@@ -302,6 +316,7 @@ function BundeslandChart() {
         data={data}
         keys={keysBundesländer}
         colors={colorsBundesländer}
+        showBg={checkedCoronaBg}
       />
       <br></br>
       <br></br>
@@ -314,6 +329,11 @@ function BundeslandChart() {
         label="Ausland"
         value={checkedAusland}
         onChange={handleChangeAusland}
+      />
+      <CheckBox
+        label="Corona Bg"
+        value={checkedCoronaBg}
+        onChange={handleChangeCoronaBg}
       />
     </div>
   );
