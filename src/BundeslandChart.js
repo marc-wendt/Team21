@@ -1,6 +1,7 @@
 import BarChartBundesland from "./BarChartBundesland";
 import BarChart from "./BarChart";
 import CheckBox from "./CheckBox";
+import ToggleSwitch from "./ToggleSwitch";
 import React, { useEffect, useState, useContext } from "react";
 import { StateContext, MapContext } from "./App";
 import { colors, colorsBundesländer } from "./colors";
@@ -47,47 +48,34 @@ function BundeslandChart() {
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
+  const [checkedCoronaBg, setCheckedCoronaBg] = useState(false);
 
   useEffect(() => {
-    if (checkedInland && !checkedAusland) {
-      getBundeslandInlandData(currentState);
-    }
-    if (!checkedInland && checkedAusland) {
+    if (
+      (checkedAusland && checkedInland) ||
+      (!checkedAusland && !checkedInland)
+    ) {
+      getBundeslandData(currentState);
+    } else if (checkedAusland && !checkedInland) {
       getBundeslandAuslandData(currentState);
-    }
-    if (checkedInland && checkedAusland) {
+    } else if (checkedInland && !checkedAusland) {
+      getBundeslandInlandData(currentState);
+    } else {
       getBundeslandData(currentState);
     }
-    if (!checkedInland && !checkedAusland) {
-      getBundeslandData(currentState);
-    }
-  }, [currentState, checkedAusland, checkedInland]);
+  }, [currentState, checkedAusland, checkedInland, checkedCoronaBg]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {
     setCheckedInland(!checkedInland);
-
-    if (!checkedInland && !checkedAusland) {
-      getBundeslandInlandData(currentState);
-    }
-    if (checkedInland && checkedAusland) {
-      getBundeslandAuslandData(currentState);
-    } else {
-      getBundeslandData(currentState);
-    }
   };
 
   const handleChangeAusland = () => {
     setCheckedAusland(!checkedAusland);
+  };
 
-    if (!checkedAusland && !checkedInland) {
-      getBundeslandAuslandData(currentState);
-    }
-    if (checkedAusland && checkedInland) {
-      getBundeslandInlandData(currentState);
-    } else {
-      getBundeslandData(currentState);
-    }
+  const handleChangeCoronaBg = () => {
+    setCheckedCoronaBg(!checkedCoronaBg);
   };
 
   // Data
@@ -212,6 +200,7 @@ function BundeslandChart() {
         month: el.month,
         inland: el.inland,
         ausland: 0,
+        hotels: el.hotels,
       });
     });
 
@@ -281,6 +270,7 @@ function BundeslandChart() {
         month: el.month,
         inland: 0,
         ausland: el.ausland,
+        hotels: el.hotels,
       });
     });
 
@@ -302,6 +292,7 @@ function BundeslandChart() {
         data={data}
         keys={keysBundesländer}
         colors={colorsBundesländer}
+        showBg={checkedCoronaBg}
       />
       <br></br>
       <br></br>
@@ -314,6 +305,12 @@ function BundeslandChart() {
         label="Ausland"
         value={checkedAusland}
         onChange={handleChangeAusland}
+      />
+      <br></br>
+      <ToggleSwitch
+        label="Corona Maßnahmen"
+        isOn={checkedCoronaBg}
+        handleToggle={handleChangeCoronaBg}
       />
     </div>
   );
