@@ -1,6 +1,7 @@
 import BarChartBundesland from "./BarChartBundesland";
 import BarChart from "./BarChart";
 import CheckBox from "./CheckBox";
+import ToggleSwitch from "./ToggleSwitch";
 import React, { useEffect, useState, useContext } from "react";
 import { StateContext, MapContext } from "./App";
 import { colors, colorsBundesländer } from "./colors";
@@ -47,14 +48,17 @@ function BundeslandChart() {
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
-  const [checkedCoronaBg, setCheckedCoronaBg] = useState(true);
+  const [checkedCoronaBg, setCheckedCoronaBg] = useState(false);
 
   useEffect(() => {
-    if((checkedAusland && checkedInland) || (!checkedAusland && !checkedInland)) {
+    if (
+      (checkedAusland && checkedInland) ||
+      (!checkedAusland && !checkedInland)
+    ) {
       getBundeslandData(currentState);
-    } else if(checkedAusland && !checkedInland) {
+    } else if (checkedAusland && !checkedInland) {
       getBundeslandAuslandData(currentState);
-    } else if(checkedInland && !checkedAusland) {
+    } else if (checkedInland && !checkedAusland) {
       getBundeslandInlandData(currentState);
     } else {
       getBundeslandData(currentState);
@@ -64,45 +68,15 @@ function BundeslandChart() {
   // Checkbox Action Handler
   const handleChangeInland = () => {
     setCheckedInland(!checkedInland);
-
-    // if (!checkedInland && !checkedAusland) {
-    //   getBundeslandInlandData(currentState);
-    // }
-    // if (checkedInland && checkedAusland) {
-    //   getBundeslandAuslandData(currentState);
-    // } else {
-    //   getBundeslandData(currentState);
-    // }
   };
 
   const handleChangeAusland = () => {
     setCheckedAusland(!checkedAusland);
-
-    // if (!checkedAusland && !checkedInland) {
-    //   getBundeslandAuslandData(currentState);
-    // }
-    // if (checkedAusland && checkedInland) {
-    //   getBundeslandInlandData(currentState);
-    // } else {
-    //   getBundeslandData(currentState);
-    // }
   };
 
   const handleChangeCoronaBg = () => {
     setCheckedCoronaBg(!checkedCoronaBg);
-    
-    // setData([])
-    
-    // if((checkedAusland && checkedInland) || (!checkedAusland && !checkedInland)) {
-    //   getBundeslandData(currentState);
-    // } else if(checkedAusland && !checkedInland) {
-    //   getBundeslandAuslandData(currentState);
-    // } else if(checkedInland && !checkedAusland) {
-    //   getBundeslandInlandData(currentState);
-    // } else {
-    //   getBundeslandData(currentState);
-    // }
-  }
+  };
 
   // Data
   const [data, setData] = useState([]);
@@ -226,6 +200,7 @@ function BundeslandChart() {
         month: el.month,
         inland: el.inland,
         ausland: 0,
+        hotels: el.hotels,
       });
     });
 
@@ -295,6 +270,7 @@ function BundeslandChart() {
         month: el.month,
         inland: 0,
         ausland: el.ausland,
+        hotels: el.hotels,
       });
     });
 
@@ -330,10 +306,11 @@ function BundeslandChart() {
         value={checkedAusland}
         onChange={handleChangeAusland}
       />
-      <CheckBox
-        label="Corona Bg"
-        value={checkedCoronaBg}
-        onChange={handleChangeCoronaBg}
+      <br></br>
+      <ToggleSwitch
+        label="Corona Maßnahmen"
+        isOn={checkedCoronaBg}
+        handleToggle={handleChangeCoronaBg}
       />
     </div>
   );
