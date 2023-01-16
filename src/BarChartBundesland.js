@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 // TODO: y axes bei switch zwischen in- und ausland beibehalten (Verhältnis gleich lassen um vergleichbarer zu sein)
 
-const BarChartBundesland = ({ data, keys, colors }) => {
+const BarChartBundesland = ({ data, keys, colors, showBg }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
@@ -31,9 +31,11 @@ const BarChartBundesland = ({ data, keys, colors }) => {
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(data);
 
-    let xIndex = 3.31;
-
-    data.forEach((element) => {
+    if(showBg)
+    {
+      let xIndex = 3.31;
+      console.log("in")
+      data.forEach((element) => {
       svg
         .append("rect")
         .attr("x", xIndex)
@@ -58,8 +60,15 @@ const BarChartBundesland = ({ data, keys, colors }) => {
             }
           }
         );
-      xIndex += 20.7;
-    });
+        xIndex += 20.7;
+      }); 
+
+    }
+    else{
+      console.log("out")
+      d3.selectAll("rect").remove();
+    }
+        
 
     var rects = svg.selectAll("g rect").data(data);
 
@@ -160,7 +169,7 @@ const BarChartBundesland = ({ data, keys, colors }) => {
 
     rects.exit().remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, showBg]);
 
   return (
     <div style={{ width: width, height: height, margin: "auto" }}>

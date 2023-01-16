@@ -1,0 +1,19 @@
+.Checkbox {
+    display: grid;
+    grid-template-columns: 75px 400px;
+    grid-template-rows: 40px;
+    grid-template-areas: "checkbox checkbox-label";
+}
+
+.checkbox {
+    display: inline-flex;
+    padding-left: 25px;
+    scale: 130%;
+}
+
+.checkbox-label {
+    padding-top: 8px;
+    display: inline-flex;
+    font-size: x-large;
+    color: white;
+}
