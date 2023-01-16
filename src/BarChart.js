@@ -76,8 +76,8 @@ const BarChart = ({ data, keys, colors }) => {
     legend
       .selectAll("text")
       .data([
-        "Hotels",
         "Hotels ohne garnis",
+        "Hotels",
         "Gasthöfe",
         "Pensionen",
         "Ferienhäuser und Ferienwohnungen",
