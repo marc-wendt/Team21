@@ -282,7 +282,9 @@ function BundeslandChart() {
       <div>
         <BarChart data={dataGermany} keys={keys} colors={colors} />
         <br></br>
-        <br></br>
+        <div className="textHeader">
+          <p className="legendHeader"> Legende:</p>
+        </div>
       </div>
     );
 
@@ -295,7 +297,10 @@ function BundeslandChart() {
         showBg={checkedCoronaBg}
       />
       <br></br>
-      <br></br>
+      <div className="textHeader">
+        <p className="legendHeader"> Legende:</p>
+        <p className="filterHeader"> Filter: </p>
+      </div>
       <CheckBox
         label="Inland"
         value={checkedInland}
