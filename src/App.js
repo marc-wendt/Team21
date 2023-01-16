@@ -40,7 +40,6 @@ function App() {
       <div className="description">
         <p>Beschreibungstext zu Daten</p>
       </div>
-      <div className="filter"></div>
     </div>
   );
 }

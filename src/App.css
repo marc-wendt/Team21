@@ -1,23 +1,24 @@
+body {
+  background-color: rgb(100, 100, 100);
+}
+
 .App {
-  color: grey;
+  color: whitesmoke;
   display: grid; 
   grid-auto-columns: 300px; 
   grid-template-columns: 1420px 480px; 
-  grid-template-rows: 120px 750px 300px; 
-  background-color: grey;
+  grid-template-rows: 120px 600px 300px; 
   grid-template-areas: 
     "header header"  
     "chart map"
-    "description filter"; 
+    "chart description"; 
 }
 
 .header { 
   grid-area: header;
   padding-bottom: 10px;
   padding-left: 100px;
-  background-color: grey;
   font-size: xx-large;
-  color: white;
 }
 
 .chart { 
@@ -28,32 +29,40 @@
   align-items: flex-start;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  color: white;
   padding-left: 100px;
-  background-color: grey;
 }
 
 .map { 
   grid-area: map; 
   display: flex;
-  background-color: grey;
 }
 
 .description { 
   grid-area: description; 
-  background-color: grey;
   font-size: larger;
-  color: white;
   padding-top: 10px;
-  padding-left: 100px;
-}
-
-.filter { 
-  grid-area: filter;
-  background-color: grey;
 }
 
 path.clicked {
   stroke: rgb(25, 96, 189);
   stroke-width: 3px;
+}
+
+.textHeader {
+  display: grid; 
+  grid-auto-columns: 300px; 
+  grid-template-columns: 200px 200px; 
+  grid-template-rows: 80px; 
+  grid-template-areas: 
+    "legendHeader filterHeader";
+  font-size: x-large;
+}
+
+.legendHeader {
+  padding-top: 20px;
+}
+
+.filterHeader {
+  display: inline-flex;
+  padding-top: 22px;
 }

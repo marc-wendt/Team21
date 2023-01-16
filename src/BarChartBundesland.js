@@ -31,44 +31,40 @@ const BarChartBundesland = ({ data, keys, colors, showBg }) => {
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(data);
 
-    if(showBg)
-    {
+    if (showBg) {
       let xIndex = 3.31;
-      console.log("in")
+      console.log("in");
       data.forEach((element) => {
-      svg
-        .append("rect")
-        .attr("x", xIndex)
-        .attr("y", 0)
-        .attr("width", 23)
-        .attr("height", 500)
-        .style(
-          "fill",
-          //Colored background
-          function (d) {
-            let value = element.hotels;
-            if (value === 0) {
-              return "#ADD09A";
+        svg
+          .append("rect")
+          .attr("x", xIndex)
+          .attr("y", 0)
+          .attr("width", 23)
+          .attr("height", 500)
+          .style(
+            "fill",
+            //Colored background
+            function (d) {
+              let value = element.hotels;
+              if (value === 0) {
+                return "#ADD09A";
+              }
+              if (value === 1) {
+                return "#E2CE9D";
+              }
+              if (value === 2) {
+                return "#D09595";
+              } else {
+                return "#FFFFFF00";
+              }
             }
-            if (value === 1) {
-              return "#E2CE9D";
-            }
-            if (value === 2) {
-              return "#D09595";
-            } else {
-              return "#FFFFFF00";
-            }
-          }
-        );
+          );
         xIndex += 20.7;
-      }); 
-
-    }
-    else{
-      console.log("out")
+      });
+    } else {
+      console.log("out");
       d3.selectAll("rect").remove();
     }
-        
 
     var rects = svg.selectAll("g rect").data(data);
 
@@ -111,7 +107,7 @@ const BarChartBundesland = ({ data, keys, colors, showBg }) => {
     // add legend
     const legend = svg
       .append("g")
-      .attr("transform", `translate(${width + 100}, ${height - 100})`);
+      .attr("transform", `translate(${width - width + 3}, ${height + 132})`);
 
     legend
       .selectAll("rect")
@@ -131,8 +127,8 @@ const BarChartBundesland = ({ data, keys, colors, showBg }) => {
       .append("text")
       .attr("x", 20)
       .attr("y", (d, i) => i * 20 + 10)
-      .style("fill", "white")
-      .style("font-size", "12px")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px")
       .text((d) => d);
 
     // add axes

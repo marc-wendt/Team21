@@ -3,17 +3,15 @@
     grid-template-columns: 75px 400px;
     grid-template-rows: 40px;
     grid-template-areas: "switch toggleswitch-label";
+    padding-left: 200px;
 }
 
 .switch{
     display: inline-flex;
-    padding-top: 5px;
 }
 
 .toggleswitch-label {
-    display: inline-flex;
-    font-size: x-large;
-    color: white;
+  font-size: large;
 }
 
 .react-switch-checkbox {
@@ -24,16 +22,14 @@
   }
   
   .react-switch-label {
-    display: flex;
-    align-items: center;
     justify-content: space-between;
     cursor: pointer;
     width: 50px;
     height: 25px;
     background: rgb(182, 182, 182);
     border-radius: 50px;
-    position: relative;
     transition: background-color .2s;
+    scale: 90%;
   }
   
   .react-switch-label .react-switch-button {
@@ -47,6 +43,7 @@
     transition: 0.2s;
     background: #fff;
     box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+    scale: 90%;
   }
   
   .react-switch-checkbox:checked + .react-switch-label .react-switch-button {
