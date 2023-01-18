@@ -18,8 +18,8 @@ Unsere Forschungsfrage: Hatte Corona einen Einfluss auf das Urlaubsverhalten der
 
 ## Funktionen
 ### Essentiell:
-- [x] **Balkendiagramm**, das die Beherbergungszahlen deutschlandweit aufgeteilt in Beherbergungsarten darstellt
-- [x] **Balkendiagramm**, das die Beherbergungszahlen der einzelnen Bundesländer darstellt
+- [x] **Balkendiagramm**, das die Beherbergungszahlen (Ankünfte von Gästen aus dem Inland) deutschlandweit aufgeteilt in Beherbergungsarten darstellt
+- [x] **Balkendiagramm**, das die Beherbergungszahlen (Ankünftevon Gästen aus dem In- und Ausland) der einzelnen Bundesländer darstellt
 - [x] interaktive **Deutschland Map**, auf der man das jeweilige Bundesland auswählen kann
 - [x] **Corona Maßnahmen Verlauf**, im Hintergrund des Balkendiagramms anzeigen
 
