@@ -7,17 +7,14 @@ body {
   display: grid; 
   grid-auto-columns: 300px; 
   grid-template-columns: 1320px 480px; 
-  grid-template-rows: 120px 560px 300px; 
+  grid-template-rows: 670px 300px; 
   grid-template-areas: 
-    "header header"  
     "chart map"
     "chart description"; 
 }
 
 .header { 
-  grid-area: header;
   padding-bottom: 10px;
-  padding-left: 100px;
   font-size: xx-large;
 }
 
@@ -35,6 +32,7 @@ body {
 .map { 
   grid-area: map; 
   display: flex;
+  padding-top: 100px;
 }
 
 .description { 

@@ -12,9 +12,6 @@ function App() {
 
   return (
     <div className="App">
-      <div className="header">
-        <p>Team21</p>
-      </div>
       <div className="chart">
         <StateContext.Provider
           value={{ currentState, changeState: setCurrentState }}
@@ -44,9 +41,7 @@ function App() {
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
           sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
           rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua.
+          ipsum dolor sit amet.
         </p>
       </div>
     </div>

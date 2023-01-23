@@ -280,6 +280,11 @@ function BundeslandChart() {
   if (isLoading)
     return (
       <div>
+        <div className="header">
+          <p>
+            Ankünfte von Inländern pro Beherbergungsart für gesamt Deutschland
+          </p>
+        </div>
         <BarChart data={dataGermany} keys={keys} colors={colors} />
         <br></br>
         <div className="textHeader">
@@ -290,6 +295,9 @@ function BundeslandChart() {
 
   return (
     <div>
+      <div className="header">
+        <p>Ankünfte in {currentState}</p>
+      </div>
       <BarChartBundesland
         data={data}
         keys={keysBundesländer}
