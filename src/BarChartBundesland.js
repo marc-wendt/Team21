@@ -131,6 +131,52 @@ const BarChartBundesland = ({ data, keys, colors, showBg }) => {
       .style("font-size", "15px")
       .text((d) => d);
 
+    // add corona legend
+    svg
+      .append("rect")
+      .attr("x", 3)
+      .attr("y", 730)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#ADD09A");
+    svg
+      .append("text")
+      .attr("x", 23)
+      .attr("y", 740)
+      .text("Keine Maßnahmen")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px");
+
+    svg
+      .append("rect")
+      .attr("x", 3)
+      .attr("y", 750)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#E2CE9D");
+    svg
+      .append("text")
+      .attr("x", 23)
+      .attr("y", 760)
+      .text("Maßnahmen vorhanden")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px");
+
+    svg
+      .append("rect")
+      .attr("x", 3)
+      .attr("y", 770)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#D09595");
+    svg
+      .append("text")
+      .attr("x", 23)
+      .attr("y", 780)
+      .text("Ausgangssperre")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px");
+
     // add axes
     svg
       .append("g")
