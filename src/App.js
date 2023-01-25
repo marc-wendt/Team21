@@ -30,7 +30,7 @@ function App() {
           <MapContext.Provider
             value={{ checkedMap, setCheckedMap: setCheckedMap }}
           >
-            <GermanyMap />
+              <GermanyMap />
           </MapContext.Provider>
         </StateContext.Provider>
       </div>

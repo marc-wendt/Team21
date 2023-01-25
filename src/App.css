@@ -72,3 +72,26 @@ path.clicked {
   display: inline-flex;
   padding-top: 22px;
 }
+
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: auto;                  
+  height: auto;                 
+  padding: 2px;             
+  font: 12px sans-serif;          
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;
+  border: 1px;         
+}
+
+div.tooltip > h3 {
+background: rgb(100, 100, 100);
+margin-bottom: 0px;
+margin-top: 0px;
+height: auto;
+font-size: 22px;
+color: white;
+}
+
