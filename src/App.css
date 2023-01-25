@@ -37,7 +37,7 @@ body {
 
 .description { 
   grid-area: description; 
-  padding-top: 10px;
+  padding-top: 100px;
 }
 
 .description p {

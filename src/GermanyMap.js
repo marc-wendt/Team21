@@ -28,13 +28,21 @@ function GermanyMap() {
           ;
       }
 
+      var zoom = d3.zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', function (event) {
+        newSvg.selectAll('path')
+          .attr('transform', event.transform);
+      });
+    
+    newSvg.call(zoom);
+
       const projection = d3
         .geoAlbers()
         .center([10.5, 51.3])
         .rotate([-10.5, 0])
         .scale(4000)
         .translate([700, 250])
-
         ;
 
       const path = d3.geoPath().projection(projection);
@@ -44,7 +52,7 @@ function GermanyMap() {
         .style('opacity', 0);
 
       d3.json(
-        "https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bundeslaender/4_niedrig.geo.json"
+        "https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bundeslaender/3_mittel.geo.json"
       ).then((geojson) => {
         if (!document.querySelector("#map svg path")) {
           newSvg
@@ -55,13 +63,13 @@ function GermanyMap() {
             .attr("d", path)
             .attr("fill", "#ccc")
             .attr("stroke", "#333")
-            .attr("stroke-width", 1) // Initial stroke width
+            .attr("stroke-width", 0.7) // Initial stroke width
             .on("click", function (d) {
               // Check if the state that was clicked is the same as the one with the clicked class
               // -- function remove clicked state
               if (this === d3.select(".clicked").node()) {
                 d3.select(this)
-                  .attr("stroke-width", 1)
+                  .attr("stroke-width", 0.7)
                   .style("fill", d3.color("none"))
                   .classed("clicked", false);
                 changeState("");
@@ -69,11 +77,11 @@ function GermanyMap() {
               } else {
                 // -- funciton set clicked state or update clicked state
                 d3.select(".clicked")
-                  .attr("stroke-width", 1)
+                  .attr("stroke-width", 0.7)
                   .style("fill", d3.color("none"))
                   .classed("clicked", false);
                 d3.select(this)
-                  .attr("stroke-width", 3)
+                  .attr("stroke-width", 1.5)
                   .style("fill", d3.color("steelblue"))
                   .classed("clicked", true);
                 changeState(d.target.__data__.properties.name);
@@ -109,11 +117,15 @@ function GermanyMap() {
 
 
 
+
+
         }
       });
 
       setSvg(newSvg);
+
     }
+
   }, [svg, changeState, checkedMap, setCheckedMap]);
 
 
