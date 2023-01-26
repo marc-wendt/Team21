@@ -51,15 +51,14 @@ function BundeslandChart() {
   const [checkedCoronaBg, setCheckedCoronaBg] = useState(false);
 
   useEffect(() => {
-    if (
-      (checkedAusland && checkedInland) ||
-      (!checkedAusland && !checkedInland)
-    ) {
+    if (checkedAusland && checkedInland) {
       getBundeslandData(currentState);
     } else if (checkedAusland && !checkedInland) {
       getBundeslandAuslandData(currentState);
     } else if (checkedInland && !checkedAusland) {
       getBundeslandInlandData(currentState);
+    } else if (!checkedInland && !checkedAusland) {
+      getEmptyBundeslandData();
     } else {
       getBundeslandData(currentState);
     }
@@ -276,6 +275,12 @@ function BundeslandChart() {
       });
     });
 
+    setData(arr);
+  };
+
+  // gets empty array
+  const getEmptyBundeslandData = () => {
+    let arr = [];
     setData(arr);
   };
 
