@@ -18,8 +18,8 @@ Unsere Forschungsfrage: Hatte Corona einen Einfluss auf das Urlaubsverhalten der
 
 ## Funktionen
 ### Essentiell:
-- [x] **Balkendiagramm**, das die Beherbergungszahlen deutschlandweit aufgeteilt in Beherbergungsarten darstellt
-- [x] **Balkendiagramm**, das die Beherbergungszahlen der einzelnen Bundesländer darstellt
+- [x] **Balkendiagramm**, das die Beherbergungszahlen (Ankünfte von Gästen aus dem Inland) deutschlandweit aufgeteilt in Beherbergungsarten darstellt
+- [x] **Balkendiagramm**, das die Beherbergungszahlen (Ankünftevon Gästen aus dem In- und Ausland) der einzelnen Bundesländer darstellt
 - [x] interaktive **Deutschland Map**, auf der man das jeweilige Bundesland auswählen kann
 - [x] **Corona Maßnahmen Verlauf**, im Hintergrund des Balkendiagramms anzeigen
 
@@ -27,6 +27,6 @@ Unsere Forschungsfrage: Hatte Corona einen Einfluss auf das Urlaubsverhalten der
 - [ ] **Filterfunktionen** um einzelne **Beherbergungsarten** (Hotels, Campingplätze, Jugendherbergen, etc.) im Balkendiagramm ein- bzw. ausblenden zu lassen
 - [x] **Filterfunktion** um Beherbergungsdaten von **In- vs. Auslandsgästen** ein- bzw. ausblenden zu lassen
 - [ ] **Switchfunktion** um dynamisch zwischen einem **gestapelten und gruppierten Balkendiagramm** wechseln zu können
-- [ ] **Switchfunktion** um dynamisch Coronamaßnahmen ein- und ausblenden zu können
+- [x] **Switchfunktion** um dynamisch Coronamaßnahmen ein- und ausblenden zu können
 ## Gantt Chart
 ![Alt text](./Gantt_Chart_update.jpg?raw=true)

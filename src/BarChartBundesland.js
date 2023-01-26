@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 // TODO: y axes bei switch zwischen in- und ausland beibehalten (Verhältnis gleich lassen um vergleichbarer zu sein)
 
-const BarChartBundesland = ({ data, keys, colors }) => {
+const BarChartBundesland = ({ data, keys, colors, showBg }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
@@ -31,35 +31,40 @@ const BarChartBundesland = ({ data, keys, colors }) => {
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(data);
 
-    let xIndex = 3.31;
-
-    data.forEach((element) => {
-      svg
-        .append("rect")
-        .attr("x", xIndex)
-        .attr("y", 0)
-        .attr("width", 23)
-        .attr("height", 500)
-        .style(
-          "fill",
-          //Colored background
-          function (d) {
-            let value = element.hotels;
-            if (value === 0) {
-              return "#ADD09A";
+    if (showBg) {
+      let xIndex = 3.31;
+      console.log("in");
+      data.forEach((element) => {
+        svg
+          .append("rect")
+          .attr("x", xIndex)
+          .attr("y", 0)
+          .attr("width", 23)
+          .attr("height", 500)
+          .style(
+            "fill",
+            //Colored background
+            function (d) {
+              let value = element.hotels;
+              if (value === 0) {
+                return "#ADD09A";
+              }
+              if (value === 1) {
+                return "#E2CE9D";
+              }
+              if (value === 2) {
+                return "#D09595";
+              } else {
+                return "#FFFFFF00";
+              }
             }
-            if (value === 1) {
-              return "#E2CE9D";
-            }
-            if (value === 2) {
-              return "#D09595";
-            } else {
-              return "#FFFFFF00";
-            }
-          }
-        );
-      xIndex += 20.7;
-    });
+          );
+        xIndex += 20.7;
+      });
+    } else {
+      console.log("out");
+      d3.selectAll("rect").remove();
+    }
 
     var rects = svg.selectAll("g rect").data(data);
 
@@ -102,7 +107,7 @@ const BarChartBundesland = ({ data, keys, colors }) => {
     // add legend
     const legend = svg
       .append("g")
-      .attr("transform", `translate(${width + 100}, ${height - 100})`);
+      .attr("transform", `translate(${width - width + 3}, ${height + 132})`);
 
     legend
       .selectAll("rect")
@@ -122,9 +127,55 @@ const BarChartBundesland = ({ data, keys, colors }) => {
       .append("text")
       .attr("x", 20)
       .attr("y", (d, i) => i * 20 + 10)
-      .style("fill", "white")
-      .style("font-size", "12px")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px")
       .text((d) => d);
+
+    // add corona legend
+    svg
+      .append("rect")
+      .attr("x", 3)
+      .attr("y", 730)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#ADD09A");
+    svg
+      .append("text")
+      .attr("x", 23)
+      .attr("y", 740)
+      .text("Keine Maßnahmen")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px");
+
+    svg
+      .append("rect")
+      .attr("x", 3)
+      .attr("y", 750)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#E2CE9D");
+    svg
+      .append("text")
+      .attr("x", 23)
+      .attr("y", 760)
+      .text("Maßnahmen vorhanden")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px");
+
+    svg
+      .append("rect")
+      .attr("x", 3)
+      .attr("y", 770)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#D09595");
+    svg
+      .append("text")
+      .attr("x", 23)
+      .attr("y", 780)
+      .text("Ausgangssperre")
+      .style("fill", "whitesmoke")
+      .style("font-size", "15px");
 
     // add axes
     svg
@@ -160,7 +211,7 @@ const BarChartBundesland = ({ data, keys, colors }) => {
 
     rects.exit().remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, showBg]);
 
   return (
     <div style={{ width: width, height: height, margin: "auto" }}>
