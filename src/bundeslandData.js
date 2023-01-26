@@ -249,16 +249,6 @@ export const badenWürttemberg = [
     inland: 1654691,
     ausland: 452194,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const bayern = [
@@ -511,16 +501,6 @@ export const bayern = [
     month: "Okt 22",
     inland: 2704067,
     ausland: 675055,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
 
@@ -775,16 +755,6 @@ export const berlin = [
     inland: 718917,
     ausland: 361631,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const brandenburg = [
@@ -1037,16 +1007,6 @@ export const brandenburg = [
     month: "Okt 22",
     inland: 406127,
     ausland: 33639,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
 
@@ -1301,16 +1261,6 @@ export const bremen = [
     inland: 406127,
     ausland: 33639,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const hamburg = [
@@ -1562,16 +1512,6 @@ export const hamburg = [
     month: "Okt 22",
     inland: 552264,
     ausland: 122793,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
 
@@ -1826,16 +1766,6 @@ export const hessen = [
     inland: 1006052,
     ausland: 273250,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const mecklenburgVorpommern = [
@@ -2088,16 +2018,6 @@ export const mecklenburgVorpommern = [
     month: "Okt 22",
     inland: 660661,
     ausland: 19424,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
 
@@ -2352,16 +2272,6 @@ export const niedersachsen = [
     inland: 1202394,
     ausland: 112304,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const nordrheinWestfalen = [
@@ -2614,16 +2524,6 @@ export const nordrheinWestfalen = [
     month: "Okt 22",
     inland: 1579771,
     ausland: 400875,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
 
@@ -2878,16 +2778,6 @@ export const rheinlandPfalz = [
     inland: 706147,
     ausland: 134597,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const saarland = [
@@ -3140,16 +3030,6 @@ export const saarland = [
     month: "Okt 22",
     inland: 86801,
     ausland: 14679,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
 
@@ -3404,16 +3284,6 @@ export const sachsenAnhalt = [
     inland: 644755,
     ausland: 67306,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const sachsen = [
@@ -3666,16 +3536,6 @@ export const sachsen = [
     month: "Okt 22",
     inland: 292217,
     ausland: 17531,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
 
@@ -3930,16 +3790,6 @@ export const schleswigHolstein = [
     inland: 729018,
     ausland: 63178,
   },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
-  },
 ];
 
 export const thüringen = [
@@ -4192,15 +4042,5 @@ export const thüringen = [
     month: "Okt 22",
     inland: 326342,
     ausland: 16077,
-  },
-  {
-    month: "Nov 22",
-    inland: 0,
-    ausland: 0,
-  },
-  {
-    month: "Dez 22",
-    inland: 0,
-    ausland: 0,
   },
 ];
