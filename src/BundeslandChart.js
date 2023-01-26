@@ -191,6 +191,7 @@ function BundeslandChart() {
         d = thüringen;
         break;
       default:
+        d = [];
         break;
     }
 
@@ -261,6 +262,7 @@ function BundeslandChart() {
         d = thüringen;
         break;
       default:
+        d = [];
         break;
     }
 
