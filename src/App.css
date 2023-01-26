@@ -6,8 +6,8 @@ body {
   color: whitesmoke;
   display: grid; 
   grid-auto-columns: 300px; 
-  grid-template-columns: 1320px 480px; 
-  grid-template-rows: 670px 300px; 
+  grid-template-columns: 1220px 600px; 
+  grid-template-rows: 570px 50px 300px; 
   grid-template-areas: 
     "chart map"
     "chart description"; 
@@ -37,7 +37,7 @@ body {
 
 .description { 
   grid-area: description; 
-  padding-top: 100px;
+  padding-top: 110px;
 }
 
 .description p {

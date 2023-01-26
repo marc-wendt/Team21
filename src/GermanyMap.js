@@ -10,46 +10,42 @@ function GermanyMap() {
   const { checkedMap, setCheckedMap } = useContext(MapContext);
 
   useEffect(() => {
-
     let newSvg;
     if (!svg) {
       // Select the SVG element, if it exists
       newSvg = d3.select("#map svg");
-
-
 
       // If the SVG element does not exist, create it
       if (newSvg.empty()) {
         newSvg = d3
           .select("#map")
           .append("svg")
-          .attr("width", 480)
-          .attr("height", 700)
-          ;
+          .attr("width", 600)
+          .attr("height", 550);
       }
 
-      var zoom = d3.zoom()
-      .scaleExtent([1, 8])
-      .on('zoom', function (event) {
-        newSvg.selectAll('path')
-          .attr('transform', event.transform);
-      });
-    
-    newSvg.call(zoom);
+      var zoom = d3
+        .zoom()
+        .scaleExtent([1, 8])
+        .on("zoom", function (event) {
+          newSvg.selectAll("path").attr("transform", event.transform);
+        });
+
+      newSvg.call(zoom);
 
       const projection = d3
         .geoAlbers()
         .center([10.5, 51.3])
         .rotate([-10.5, 0])
         .scale(4000)
-        .translate([700, 250])
-        ;
-
+        .translate([700, 250]);
       const path = d3.geoPath().projection(projection);
 
-      var div = d3.select('body').append('div')
-        .attr('class', 'tooltip')
-        .style('opacity', 0);
+      var div = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
 
       d3.json(
         "https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bundeslaender/3_mittel.geo.json"
@@ -88,51 +84,35 @@ function GermanyMap() {
                 setCheckedMap(true);
               }
             })
-            .on('mouseover', function (d, i) {
+            .on("mouseover", function (d, i) {
               console.log("mouseover on", i.properties.name);
               d3.select(this)
                 .transition()
                 .duration(100)
-                .attr('r', 20)
-                .attr('fill', d3.color("whitesmoke"))
-              div.transition()
-                .duration(200)
-                .style('opacity', .9);
-              div.html('<h3>' + i.properties.name + '</h3>')
-                .style('left', (d.pageX) + 'px')
-                .style('top', (d.pageY - 28) + 'px');
+                .attr("r", 20)
+                .attr("fill", d3.color("whitesmoke"));
+              div.transition().duration(200).style("opacity", 0.9);
+              div
+                .html("<h3>" + i.properties.name + "</h3>")
+                .style("left", d.pageX + "px")
+                .style("top", d.pageY - 28 + "px");
             })
-            .on('mouseout', function (d, i) {
+            .on("mouseout", function (d, i) {
               d3.select(this)
                 .transition()
                 .duration(100)
-                .attr('r', 10)
-                .attr('fill', '#ccc')
-              div.transition()
-                .duration(200)
-                .style('opacity', 0);
-
+                .attr("r", 10)
+                .attr("fill", "#ccc");
+              div.transition().duration(200).style("opacity", 0);
             });
-
-
-
-
-
-
         }
       });
 
       setSvg(newSvg);
-
     }
-
   }, [svg, changeState, checkedMap, setCheckedMap]);
-
-
-
 
   return <div id="map" />;
 }
 
 export default GermanyMap;
-
