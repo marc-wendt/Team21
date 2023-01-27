@@ -9,7 +9,10 @@ const BarChart = ({ data, keys, colors }) => {
   const height = 500;
 
   useEffect(() => {
-    const svg = d3.select(container.current);
+    const svg = d3
+      .select(container.current)
+      .attr("width", width)
+      .attr("height", height);
 
     // create scales
     const xScale = d3
@@ -25,8 +28,8 @@ const BarChart = ({ data, keys, colors }) => {
         d3.max(
           data,
           (d) =>
-            d.hotels_inland +
             d.hotels_ohne_garnis_inland +
+            d.hotels_inland +
             d.gasthöfe_inland +
             d.pensionen_inland +
             d.ferienhäuser_und_ferienwohnungen_inland +
@@ -38,8 +41,9 @@ const BarChart = ({ data, keys, colors }) => {
       .range([height, 0]);
 
     // create the stacked bars
-    //const stackedData = d3.stack().keys(["hotels_inland", "hotels_ohne_garnis_inland", "gasthöfe_inland", "pensionen_inland", "ferienhäuser_und_ferienwohnungen_inland", "jugendherbergen_inland", "campingplätze_inland", "sonstige_inland"])(data);
     const stackedData = d3.stack().keys(keys)(data);
+
+    var rects = svg.selectAll("g rect").data(data);
 
     // add bars
     svg
@@ -76,11 +80,11 @@ const BarChart = ({ data, keys, colors }) => {
     legend
       .selectAll("text")
       .data([
-        "Hotels ohne garnis",
         "Hotels",
+        "Hotels ohne garnis",
         "Gasthöfe",
         "Pensionen",
-        "Ferienhäuser und Ferienwohnungen",
+        "Ferienhäuser und -wohnungen",
         "Jugendherbergen",
         "Campingplätze",
         "Sonstige",
@@ -103,7 +107,49 @@ const BarChart = ({ data, keys, colors }) => {
       .attr("dx", "-.8em")
       .attr("transform", "rotate(-65)");
 
-    svg.append("g").call(d3.axisLeft(yScale));
+    const yAxis = d3.axisLeft(yScale);
+
+    svg.select(".y-axis").remove();
+    svg.append("g").attr("class", "y-axis").call(yAxis);
+
+    // update bar data
+    rects
+      .data(data)
+      .merge(rects)
+      .attr("x", (d) => xScale(d.month))
+      .attr("y", (d) => yScale(d[1]))
+      .attr("height", function (d) {
+        if (
+          Math.sign(
+            height -
+              (yScale(d.hotels_inland) +
+                yScale(d.hotels_ohne_garnis_inland) +
+                yScale(d.gasthöfe_inland) +
+                yScale(d.pensionen_inland) +
+                yScale(d.ferienhäuser_und_ferienwohnungen_inland) +
+                yScale(d.jugendherbergen_inland) +
+                yScale(d.campingplätze_inland) +
+                yScale(d.sonstige_inland))
+          ) !== 1
+        ) {
+          return 0;
+        } else {
+          return (
+            height -
+            (yScale(d.hotels_inland) +
+              yScale(d.hotels_ohne_garnis_inland) +
+              yScale(d.gasthöfe_inland) +
+              yScale(d.pensionen_inland) +
+              yScale(d.ferienhäuser_und_ferienwohnungen_inland) +
+              yScale(d.jugendherbergen_inland) +
+              yScale(d.campingplätze_inland) +
+              yScale(d.sonstige_inland))
+          );
+        }
+      })
+      .attr("width", xScale.bandwidth());
+
+    rects.exit().remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 

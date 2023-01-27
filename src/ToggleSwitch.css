@@ -1,9 +1,9 @@
 .ToggleSwitch {
     display: grid;
-    grid-template-columns: 75px 400px;
+    grid-template-columns: 70px 400px;
     grid-template-rows: 40px;
     grid-template-areas: "switch toggleswitch-label";
-    padding-left: 200px;
+    padding-left: 245px;
 }
 
 .switch{

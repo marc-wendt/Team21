@@ -6,25 +6,13 @@ import React, { useEffect, useState, useContext } from "react";
 import { StateContext, MapContext } from "./App";
 import { colors, colorsBundesländer } from "./colors";
 import { keys, keysBundesländer } from "./keys";
-import { data as dataGermany } from "./data";
+import { dataGermany } from "./data";
 import {
-  badenWürttemberg,
-  bayern,
-  berlin,
-  bremen,
-  hamburg,
-  hessen,
-  mecklenburgVorpommern,
-  niedersachsen,
-  nordrheinWestfalen,
-  rheinlandPfalz,
-  saarland,
-  sachsenAnhalt,
-  sachsen,
-  schleswigHolstein,
-  thüringen,
-  brandenburg,
-} from "./bundeslandData";
+  getBundeslandData,
+  getBundeslandInlandData,
+  getBundeslandAuslandData,
+  getEmptyBundeslandData,
+} from "./getData";
 
 function BundeslandChart() {
   const [isLoading, setLoading] = useState(true);
@@ -45,22 +33,37 @@ function BundeslandChart() {
     }
   }, [checkedMap]);
 
+  // Data
+  const [data, setData] = useState([]);
+  const [dataG, setDataGermany] = useState([]);
+
   // Checkbox
   const [checkedInland, setCheckedInland] = useState(true);
   const [checkedAusland, setCheckedAusland] = useState(true);
   const [checkedCoronaBg, setCheckedCoronaBg] = useState(false);
 
+  const [checkboxesBeherbergung, setCheckboxesBeherbergung] = useState({
+    hotelsOhneGarnis: true,
+    hotels: true,
+    gasthöfe: true,
+    pensionen: true,
+    ferienhäuser: true,
+    jugendherbergen: true,
+    campingplätze: true,
+    sonstige: true,
+  });
+
   useEffect(() => {
     if (checkedAusland && checkedInland) {
-      getBundeslandData(currentState);
+      getBundeslandData(currentState, setData);
     } else if (checkedAusland && !checkedInland) {
-      getBundeslandAuslandData(currentState);
+      getBundeslandAuslandData(currentState, setData);
     } else if (checkedInland && !checkedAusland) {
-      getBundeslandInlandData(currentState);
+      getBundeslandInlandData(currentState, setData);
     } else if (!checkedInland && !checkedAusland) {
-      getEmptyBundeslandData();
+      getEmptyBundeslandData(setData);
     } else {
-      getBundeslandData(currentState);
+      getBundeslandData(currentState, setData);
     }
   }, [currentState, checkedAusland, checkedInland, checkedCoronaBg]);
 
@@ -77,211 +80,54 @@ function BundeslandChart() {
     setCheckedCoronaBg(!checkedCoronaBg);
   };
 
-  // Data
-  const [data, setData] = useState([]);
-
-  // get data (ausland and inland) for specific bundesland
-  const getBundeslandData = (bundesland) => {
-    switch (bundesland) {
-      case "Baden-Württemberg":
-        setData(badenWürttemberg);
-        break;
-      case "Bayern":
-        setData(bayern);
-        break;
-      case "Berlin":
-        setData(berlin);
-        break;
-      case "Brandenburg":
-        setData(brandenburg);
-        break;
-      case "Bremen":
-        setData(bremen);
-        break;
-      case "Hamburg":
-        setData(hamburg);
-        break;
-      case "Hessen":
-        setData(hessen);
-        break;
-      case "Mecklenburg-Vorpommern":
-        setData(mecklenburgVorpommern);
-        break;
-      case "Niedersachsen":
-        setData(niedersachsen);
-        break;
-      case "Nordrhein-Westfalen":
-        setData(nordrheinWestfalen);
-        break;
-      case "Rheinland-Pfalz":
-        setData(rheinlandPfalz);
-        break;
-      case "Saarland":
-        setData(saarland);
-        break;
-      case "Sachsen-Anhalt":
-        setData(sachsenAnhalt);
-        break;
-      case "Sachsen":
-        setData(sachsen);
-        break;
-      case "Schleswig-Holstein":
-        setData(schleswigHolstein);
-        break;
-      case "Thüringen":
-        setData(thüringen);
-        break;
-      default:
-        break;
-    }
-  };
-
-  // get only inland data for specific bundesland
-  const getBundeslandInlandData = (bundesland) => {
-    let d;
-
-    switch (bundesland) {
-      case "Baden-Württemberg":
-        d = badenWürttemberg;
-        break;
-      case "Bayern":
-        d = bayern;
-        break;
-      case "Berlin":
-        d = berlin;
-        break;
-      case "Brandenburg":
-        d = brandenburg;
-        break;
-      case "Bremen":
-        d = bremen;
-        break;
-      case "Hamburg":
-        d = hamburg;
-        break;
-      case "Hessen":
-        d = hessen;
-        break;
-      case "Mecklenburg-Vorpommern":
-        d = mecklenburgVorpommern;
-        break;
-      case "Niedersachsen":
-        d = niedersachsen;
-        break;
-      case "Nordrhein-Westfalen":
-        d = nordrheinWestfalen;
-        break;
-      case "Rheinland-Pfalz":
-        d = rheinlandPfalz;
-        break;
-      case "Saarland":
-        d = saarland;
-        break;
-      case "Sachsen-Anhalt":
-        d = sachsenAnhalt;
-        break;
-      case "Sachsen":
-        d = sachsen;
-        break;
-      case "Schleswig-Holstein":
-        d = schleswigHolstein;
-        break;
-      case "Thüringen":
-        d = thüringen;
-        break;
-      default:
-        d = [];
-        break;
-    }
-
+  useEffect(() => {
+    let d = dataGermany;
     let arr = [];
+
     d.forEach(function (el) {
       arr.push({
         month: el.month,
-        inland: el.inland,
-        ausland: 0,
-        hotels: el.hotels,
+        hotels_ohne_garnis_inland: checkboxesBeherbergung.hotelsOhneGarnis
+          ? el.hotels_ohne_garnis_inland
+          : 0,
+        hotels_ohne_garnis_ausland: el.hotels_ohne_garnis_ausland,
+        hotels_inland: checkboxesBeherbergung.hotels ? el.hotels_inland : 0,
+        hotels_ausland: el.hotels_ausland,
+        gasthöfe_inland: checkboxesBeherbergung.gasthöfe
+          ? el.gasthöfe_inland
+          : 0,
+        gasthöfe_ausland: el.gasthöfe_ausland,
+        pensionen_inland: checkboxesBeherbergung.pensionen
+          ? el.pensionen_inland
+          : 0,
+        pensionen_ausland: el.pensionen_ausland,
+        ferienhäuser_und_ferienwohnungen_inland:
+          checkboxesBeherbergung.ferienhäuser
+            ? el.ferienhäuser_und_ferienwohnungen_inland
+            : 0,
+        ferienhäuser_und_ferienwohnungen_ausland:
+          el.ferienhäuser_und_ferienwohnungen_ausland,
+        jugendherbergen_inland: checkboxesBeherbergung.jugendherbergen
+          ? el.jugendherbergen_inland
+          : 0,
+        jugendherbergen_ausland: el.jugendherbergen_ausland,
+        campingplätze_inland: checkboxesBeherbergung.campingplätze
+          ? el.campingplätze_inland
+          : 0,
+        campingplätze_ausland: el.campingplätze_ausland,
+        sonstige_inland: checkboxesBeherbergung.sonstige
+          ? el.sonstige_inland
+          : 0,
+        sonstige_ausland: el.sonstige_ausland,
+        insgesamt_inland: el.insgesamt_inland,
+        insgesamt_ausland: el.insgesamt_ausland,
       });
     });
+    setDataGermany(arr);
+  }, [checkboxesBeherbergung, setDataGermany]);
 
-    setData(arr);
-  };
-
-  // get only ausland data for specific bundesland
-  const getBundeslandAuslandData = (bundesland) => {
-    let d;
-
-    switch (bundesland) {
-      case "Baden-Württemberg":
-        d = badenWürttemberg;
-        break;
-      case "Bayern":
-        d = bayern;
-        break;
-      case "Berlin":
-        d = berlin;
-        break;
-      case "Brandenburg":
-        d = brandenburg;
-        break;
-      case "Bremen":
-        d = bremen;
-        break;
-      case "Hamburg":
-        d = hamburg;
-        break;
-      case "Hessen":
-        d = hessen;
-        break;
-      case "Mecklenburg-Vorpommern":
-        d = mecklenburgVorpommern;
-        break;
-      case "Niedersachsen":
-        d = niedersachsen;
-        break;
-      case "Nordrhein-Westfalen":
-        d = nordrheinWestfalen;
-        break;
-      case "Rheinland-Pfalz":
-        d = rheinlandPfalz;
-        break;
-      case "Saarland":
-        d = saarland;
-        break;
-      case "Sachsen-Anhalt":
-        d = sachsenAnhalt;
-        break;
-      case "Sachsen":
-        d = sachsen;
-        break;
-      case "Schleswig-Holstein":
-        d = schleswigHolstein;
-        break;
-      case "Thüringen":
-        d = thüringen;
-        break;
-      default:
-        d = [];
-        break;
-    }
-
-    let arr = [];
-    d.forEach(function (el) {
-      arr.push({
-        month: el.month,
-        inland: 0,
-        ausland: el.ausland,
-        hotels: el.hotels,
-      });
-    });
-
-    setData(arr);
-  };
-
-  // gets empty array
-  const getEmptyBundeslandData = () => {
-    let arr = [];
-    setData(arr);
+  const handleCheckboxBeherbergungChange = (name, checked) => {
+    setCheckboxesBeherbergung({ ...checkboxesBeherbergung, [name]: !checked });
   };
 
   if (isLoading)
@@ -292,10 +138,97 @@ function BundeslandChart() {
             Ankünfte von Inländern pro Beherbergungsart für gesamt Deutschland
           </p>
         </div>
-        <BarChart data={dataGermany} keys={keys} colors={colors} />
+        <BarChart data={dataG} keys={keys} colors={colors} />
         <br></br>
         <div className="textHeader">
           <p className="legendHeader"> Legende:</p>
+          <p className="filterHeader"> Filter: </p>
+        </div>
+        <div className="checkboxgrid">
+          <div className="checkboxgrid1">
+            <CheckBox
+              label="Hotels"
+              value={checkboxesBeherbergung.hotels}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "hotels",
+                  checkboxesBeherbergung.hotels
+                )
+              }
+            />
+            <CheckBox
+              label="Hotels ohne Garnis"
+              value={checkboxesBeherbergung.hotelsOhneGarnis}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "hotelsOhneGarnis",
+                  checkboxesBeherbergung.hotelsOhneGarnis
+                )
+              }
+            />
+            <CheckBox
+              label="Gasthöfe"
+              value={checkboxesBeherbergung.gasthöfe}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "gasthöfe",
+                  checkboxesBeherbergung.gasthöfe
+                )
+              }
+            />
+            <CheckBox
+              label="Pensionen"
+              value={checkboxesBeherbergung.pensionen}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "pensionen",
+                  checkboxesBeherbergung.pensionen
+                )
+              }
+            />
+          </div>
+          <div className="checkboxgrid2">
+            <CheckBox
+              label="Ferienhäuser und -wohnungen"
+              value={checkboxesBeherbergung.ferienhäuser}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "ferienhäuser",
+                  checkboxesBeherbergung.ferienhäuser
+                )
+              }
+            />
+            <CheckBox
+              label="Jugendherbergen"
+              value={checkboxesBeherbergung.jugendherbergen}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "jugendherbergen",
+                  checkboxesBeherbergung.jugendherbergen
+                )
+              }
+            />
+            <CheckBox
+              label="Campingplätze"
+              value={checkboxesBeherbergung.campingplätze}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "campingplätze",
+                  checkboxesBeherbergung.campingplätze
+                )
+              }
+            />
+            <CheckBox
+              label="Sonstige"
+              value={checkboxesBeherbergung.sonstige}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "sonstige",
+                  checkboxesBeherbergung.sonstige
+                )
+              }
+            />
+          </div>
         </div>
       </div>
     );
