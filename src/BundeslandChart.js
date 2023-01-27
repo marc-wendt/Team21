@@ -144,86 +144,92 @@ function BundeslandChart() {
           <p className="legendHeader"> Legende:</p>
           <p className="filterHeader"> Filter: </p>
         </div>
-        <CheckBox
-          label="Hotels"
-          value={checkboxesBeherbergung.hotels}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "hotels",
-              checkboxesBeherbergung.hotels
-            )
-          }
-        />
-        <CheckBox
-          label="Hotels ohne Garnis"
-          value={checkboxesBeherbergung.hotelsOhneGarnis}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "hotelsOhneGarnis",
-              checkboxesBeherbergung.hotelsOhneGarnis
-            )
-          }
-        />
-        <CheckBox
-          label="Gasthöfe"
-          value={checkboxesBeherbergung.gasthöfe}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "gasthöfe",
-              checkboxesBeherbergung.gasthöfe
-            )
-          }
-        />
-        <CheckBox
-          label="Pensionen"
-          value={checkboxesBeherbergung.pensionen}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "pensionen",
-              checkboxesBeherbergung.pensionen
-            )
-          }
-        />
-        <CheckBox
-          label="Ferienhäuser und Ferienwohnungen"
-          value={checkboxesBeherbergung.ferienhäuser}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "ferienhäuser",
-              checkboxesBeherbergung.ferienhäuser
-            )
-          }
-        />
-        <CheckBox
-          label="Jugendherbergen"
-          value={checkboxesBeherbergung.jugendherbergen}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "jugendherbergen",
-              checkboxesBeherbergung.jugendherbergen
-            )
-          }
-        />
-        <CheckBox
-          label="Campingplätze"
-          value={checkboxesBeherbergung.campingplätze}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "campingplätze",
-              checkboxesBeherbergung.campingplätze
-            )
-          }
-        />
-        <CheckBox
-          label="Sonstige"
-          value={checkboxesBeherbergung.sonstige}
-          onChange={() =>
-            handleCheckboxBeherbergungChange(
-              "sonstige",
-              checkboxesBeherbergung.sonstige
-            )
-          }
-        />
+        <div className="checkboxgrid">
+          <div className="checkboxgrid1">
+            <CheckBox
+              label="Hotels"
+              value={checkboxesBeherbergung.hotels}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "hotels",
+                  checkboxesBeherbergung.hotels
+                )
+              }
+            />
+            <CheckBox
+              label="Hotels ohne Garnis"
+              value={checkboxesBeherbergung.hotelsOhneGarnis}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "hotelsOhneGarnis",
+                  checkboxesBeherbergung.hotelsOhneGarnis
+                )
+              }
+            />
+            <CheckBox
+              label="Gasthöfe"
+              value={checkboxesBeherbergung.gasthöfe}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "gasthöfe",
+                  checkboxesBeherbergung.gasthöfe
+                )
+              }
+            />
+            <CheckBox
+              label="Pensionen"
+              value={checkboxesBeherbergung.pensionen}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "pensionen",
+                  checkboxesBeherbergung.pensionen
+                )
+              }
+            />
+          </div>
+          <div className="checkboxgrid2">
+            <CheckBox
+              label="Ferienhäuser und -wohnungen"
+              value={checkboxesBeherbergung.ferienhäuser}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "ferienhäuser",
+                  checkboxesBeherbergung.ferienhäuser
+                )
+              }
+            />
+            <CheckBox
+              label="Jugendherbergen"
+              value={checkboxesBeherbergung.jugendherbergen}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "jugendherbergen",
+                  checkboxesBeherbergung.jugendherbergen
+                )
+              }
+            />
+            <CheckBox
+              label="Campingplätze"
+              value={checkboxesBeherbergung.campingplätze}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "campingplätze",
+                  checkboxesBeherbergung.campingplätze
+                )
+              }
+            />
+            <CheckBox
+              label="Sonstige"
+              value={checkboxesBeherbergung.sonstige}
+              onChange={() =>
+                handleCheckboxBeherbergungChange(
+                  "sonstige",
+                  checkboxesBeherbergung.sonstige
+                )
+              }
+            />
+          </div>
+        </div>
       </div>
     );
 

@@ -57,7 +57,7 @@ path.clicked {
 .textHeader {
   display: grid; 
   grid-auto-columns: 300px; 
-  grid-template-columns: 200px 200px; 
+  grid-template-columns: 250px 200px; 
   grid-template-rows: 80px; 
   grid-template-areas: 
     "legendHeader filterHeader";
@@ -71,6 +71,15 @@ path.clicked {
 .filterHeader {
   display: inline-flex;
   padding-top: 22px;
+}
+
+.checkboxgrid {
+  display: grid; 
+  grid-auto-columns: 300px; 
+  grid-template-columns: 250px 200px; 
+  grid-template-rows: 80px; 
+  grid-template-areas: 
+    "checkboxgrid1 checkboxgrid2";
 }
 
 div.tooltip {   

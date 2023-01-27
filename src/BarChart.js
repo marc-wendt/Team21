@@ -84,7 +84,7 @@ const BarChart = ({ data, keys, colors }) => {
         "Hotels ohne garnis",
         "Gasthöfe",
         "Pensionen",
-        "Ferienhäuser und Ferienwohnungen",
+        "Ferienhäuser und -wohnungen",
         "Jugendherbergen",
         "Campingplätze",
         "Sonstige",
