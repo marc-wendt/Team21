@@ -2,6 +2,7 @@ import "./App.css";
 import BundeslandChart from "./BundeslandChart";
 import GermanyMap from "./GermanyMap";
 import React, { useState } from "react";
+import Slider from "./Slider";
 
 export const StateContext = React.createContext();
 export const MapContext = React.createContext();
@@ -22,6 +23,10 @@ function App() {
             <BundeslandChart />
           </MapContext.Provider>
         </StateContext.Provider>
+        
+      </div>
+      <div className="slider">
+        <Slider />
       </div>
       <div className="map">
         <StateContext.Provider

@@ -45,21 +45,25 @@ const Slider = () => {
       setSelectedInterval(val);
     });
 
-    useEffect(() => {
-        if (divRef.current) {
-            const g = d3.select(divRef.current)
-                .append('svg')
-                .attr('width', 700)
-                .attr('height', 100)
-                .append('g')
-                .attr('transform', 'translate(30,30)');
-            g.call(slider);
-        }
-        
-          
-    }, [divRef]);
+    function createSlider(divRef) {
+      const g = d3.select(divRef)
+          .append('svg')
+          .attr('width', 700)
+          .attr('height', 100)
+          .append('g')
+          .attr('transform', 'translate(30,30)');
+      g.call(slider);
+  }
 
-  return <div id="slider" ref={divRef} />
+  useEffect(() => {
+    if (divRef.current) {
+        createSlider(divRef.current);
+    }
+}, [divRef]);
+
+  return <div id="slider" ref={divRef}>
+    
+  </div>
 }
 
 export default Slider;

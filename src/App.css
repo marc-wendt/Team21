@@ -29,6 +29,17 @@ body {
   padding-left: 100px;
 }
 
+.slider { 
+  grid-area: chart;
+  grid-row: 4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  font-size: calc(10px + 2vmin);
+  padding-left: 100px;
+}
+
+
 .map { 
   grid-area: map; 
   display: flex;

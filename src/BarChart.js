@@ -8,13 +8,21 @@ const BarChart = ({ data, keys, colors }) => {
   const width = 1000;
   const height = 500;
 
+  const interval = [1, 40];
+  const intervalData = [];
+  var j = 0;
+  for (let i = interval[0]; (i < interval[1]) && (i < data.length); i++) {
+    intervalData[j] = data[i];
+    j += 1;
+  }
+
   useEffect(() => {
     const svg = d3.select(container.current);
 
     // create scales
     const xScale = d3
       .scaleBand()
-      .domain(data.map((d) => d.month))
+      .domain(intervalData.map((d) => d.month))
       .range([0, width])
       .padding(0.3);
 
@@ -23,7 +31,7 @@ const BarChart = ({ data, keys, colors }) => {
       .domain([
         0,
         d3.max(
-          data,
+          intervalData,
           (d) =>
             d.hotels_inland +
             d.hotels_ohne_garnis_inland +
@@ -39,7 +47,7 @@ const BarChart = ({ data, keys, colors }) => {
 
     // create the stacked bars
     //const stackedData = d3.stack().keys(["hotels_inland", "hotels_ohne_garnis_inland", "gasthöfe_inland", "pensionen_inland", "ferienhäuser_und_ferienwohnungen_inland", "jugendherbergen_inland", "campingplätze_inland", "sonstige_inland"])(data);
-    const stackedData = d3.stack().keys(keys)(data);
+    const stackedData = d3.stack().keys(keys)(intervalData);
 
     // add bars
     svg
