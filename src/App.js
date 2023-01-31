@@ -10,9 +10,15 @@ export const MapContext = React.createContext();
 function App() {
   const [currentState, setCurrentState] = useState("");
   const [checkedMap, setCheckedMap] = useState(false);
+  const [selectedInterval, setSelectedInterval] = useState([0,30]);
+
 
   return (
     <div className="App">
+      <div className="slider">
+        <Slider selectedInterval={selectedInterval} setSelectedInterval={setSelectedInterval}  />
+      </div>
+      <div id="printInterval"></div>
       <div className="chart">
         <StateContext.Provider
           value={{ currentState, changeState: setCurrentState }}
@@ -20,17 +26,14 @@ function App() {
           <MapContext.Provider
             value={{ checkedMap, setCheckedMap: setCheckedMap }}
           >
-            <BundeslandChart />
+            <BundeslandChart selectedInterval={selectedInterval} />
           </MapContext.Provider>
         </StateContext.Provider>
-        
-      </div>
-      <div className="slider">
-        <Slider />
       </div>
       <div className="map">
         <StateContext.Provider
           value={{ currentState, changeState: setCurrentState }}
+          
         >
           <MapContext.Provider
             value={{ checkedMap, setCheckedMap: setCheckedMap }}
@@ -52,5 +55,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

@@ -3,12 +3,27 @@ import * as d3 from "d3";
 
 // TODO: y axes bei switch zwischen in- und ausland beibehalten (Verhältnis gleich lassen um vergleichbarer zu sein)
 
-const BarChartBundesland = ({ data, keys, colors, showBg }) => {
+const BarChartBundesland = ({ data, keys, colors, showBg, selectedInterval }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
   const width = 1000;
   const height = 500;
+
+  
+  //data for only the selected interval
+  var interval = [1, 30];
+  if (selectedInterval != null){
+    console.log("selectedinterval not null")
+    console.log(selectedInterval)
+    interval = selectedInterval
+  }
+  const intervalData = [];
+  var j = 0;
+  for (let i = interval[0]; (i < interval[1]) && (i < data.length); i++) {
+    intervalData[j] = data[i];
+    j += 1;
+  }
 
   useEffect(() => {
     const svg = d3
@@ -19,17 +34,17 @@ const BarChartBundesland = ({ data, keys, colors, showBg }) => {
     // create scales
     const xScale = d3
       .scaleBand()
-      .domain(data.map((d) => d.month))
+      .domain(intervalData.map((d) => d.month))
       .range([0, width])
       .padding(0.3);
 
     const yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, (d) => d.inland + d.ausland)])
+      .domain([0, d3.max(intervalData, (d) => d.inland + d.ausland)])
       .range([height, 0]);
 
     // create the stacked bars
-    const stackedData = d3.stack().keys(keys)(data);
+    const stackedData = d3.stack().keys(keys)(intervalData);
 
     if (showBg) {
       let xIndex = 3.31;

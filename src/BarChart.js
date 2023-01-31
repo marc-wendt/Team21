@@ -1,14 +1,20 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 
-const BarChart = ({ data, keys, colors }) => {
+const BarChart = ({ data, keys, colors, selectedInterval }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
   const width = 1000;
   const height = 500;
 
-  const interval = [1, 40];
+  //data for only the selected interval
+  var interval = [1, 30];
+  if (selectedInterval != null){
+    console.log("selectedinterval not null")
+    console.log(selectedInterval)
+    interval = selectedInterval
+  }
   const intervalData = [];
   var j = 0;
   for (let i = interval[0]; (i < interval[1]) && (i < data.length); i++) {

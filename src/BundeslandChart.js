@@ -26,7 +26,7 @@ import {
   brandenburg,
 } from "./bundeslandData";
 
-function BundeslandChart() {
+function BundeslandChart({ selectedInterval }) {
   const [isLoading, setLoading] = useState(true);
   // eslint-disable-next-line
   const [checkedChart, setCheckedChart] = useState(true);
@@ -292,7 +292,7 @@ function BundeslandChart() {
             Ankünfte von Inländern pro Beherbergungsart für gesamt Deutschland
           </p>
         </div>
-        <BarChart data={dataGermany} keys={keys} colors={colors} />
+        <BarChart data={dataGermany} keys={keys} colors={colors} selectedInterval={selectedInterval}/>
         <br></br>
         <div className="textHeader">
           <p className="legendHeader"> Legende:</p>
@@ -310,6 +310,7 @@ function BundeslandChart() {
         keys={keysBundesländer}
         colors={colorsBundesländer}
         showBg={checkedCoronaBg}
+        selectedInterval={selectedInterval}
       />
       <br></br>
       <div className="textHeader">

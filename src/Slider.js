@@ -3,14 +3,14 @@ import * as d3 from "d3";
 import { sliderBottom } from "d3-simple-slider";
 import { data as database } from "./data";
 
-const Slider = () => {
+const Slider = ({ selectedInterval, setSelectedInterval }) => {
   const div = document.createElement('div');
   const divRef = useRef(null);
 
   const data = database.map(d => d.month);
   const defaultValue = [0, data.length -1];
-  const [selectedInterval, setSelectedInterval] = useState(defaultValue);
 
+  
   //select every 3rd value to be displayed on the slider
   function dataFormat (d) {
     if (d % 3 == 0) {
@@ -38,8 +38,9 @@ const Slider = () => {
     .fill('skyblue')
     .displayValue(false)
     .on('onchange', (val) => {
-      console.log(val);
-      setSelectedInterval(val);
+      setSelectedInterval(prevSelectedInterval => {
+        return val;
+      });
     });
 
     function createSlider(divRef) {
