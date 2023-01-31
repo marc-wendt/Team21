@@ -7,14 +7,11 @@ const Slider = () => {
   const div = document.createElement('div');
   const divRef = useRef(null);
 
-  const data = database.map(d => d.month)
-  const datasave = ["Jan 19", "Feb 19", "Mar 19", "Apr 19", "May 19", "Jun 19", "Jul 19", "Aug 19"]
+  const data = database.map(d => d.month);
   const defaultValue = [0, data.length -1];
-
   const [selectedInterval, setSelectedInterval] = useState(defaultValue);
 
-  //const selectedInterval = defaultValue;
-
+  //select every 3rd value to be displayed on the slider
   function dataFormat (d) {
     if (d % 3 == 0) {
       const x = (data[d][0] + data[d][1] + data[d][2] + " " + data[d][data[d].length -2] + data[d][data[d].length -1])
@@ -53,13 +50,16 @@ const Slider = () => {
           .append('g')
           .attr('transform', 'translate(30,30)');
       g.call(slider);
-  }
-
-  useEffect(() => {
-    if (divRef.current) {
-        createSlider(divRef.current);
     }
-}, [divRef]);
+
+    useEffect(() => {
+      if (divRef.current) {
+        d3.select(divRef.current)
+          .selectAll("svg")
+          .remove();
+        createSlider(divRef.current);
+      }
+    }, [divRef]);
 
   return <div id="slider" ref={divRef}>
     
