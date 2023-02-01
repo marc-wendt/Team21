@@ -158,14 +158,14 @@ const BarChartBundesland = ({
     svg
       .append("rect")
       .attr("x", 3)
-      .attr("y", 730)
+      .attr("y", 760)
       .attr("width", 10)
       .attr("height", 10)
       .style("fill", "#ADD09A");
     svg
       .append("text")
       .attr("x", 23)
-      .attr("y", 740)
+      .attr("y", 770)
       .text("Keine Maßnahmen")
       .style("fill", "whitesmoke")
       .style("font-size", "15px");
@@ -173,14 +173,14 @@ const BarChartBundesland = ({
     svg
       .append("rect")
       .attr("x", 3)
-      .attr("y", 750)
+      .attr("y", 780)
       .attr("width", 10)
       .attr("height", 10)
       .style("fill", "#E2CE9D");
     svg
       .append("text")
       .attr("x", 23)
-      .attr("y", 760)
+      .attr("y", 790)
       .text("Maßnahmen vorhanden")
       .style("fill", "whitesmoke")
       .style("font-size", "15px");
@@ -188,14 +188,14 @@ const BarChartBundesland = ({
     svg
       .append("rect")
       .attr("x", 3)
-      .attr("y", 770)
+      .attr("y", 800)
       .attr("width", 10)
       .attr("height", 10)
       .style("fill", "#D09595");
     svg
       .append("text")
       .attr("x", 23)
-      .attr("y", 780)
+      .attr("y", 810)
       .text("Ausgangssperre")
       .style("fill", "whitesmoke")
       .style("font-size", "15px");

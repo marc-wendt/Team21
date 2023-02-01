@@ -4,7 +4,6 @@
     grid-template-rows: 40px;
     grid-template-areas: "switch toggleswitch-label";
     padding-left: 245px;
-    padding-top: 20px;
 }
 
 .switch{
