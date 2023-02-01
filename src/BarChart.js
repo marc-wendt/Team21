@@ -11,8 +11,6 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
   //data for only the selected interval
   var interval = [1, 30];
   if (selectedInterval != null){
-    console.log("selectedinterval not null")
-    console.log(selectedInterval)
     interval = selectedInterval
   }
   const intervalData = [];

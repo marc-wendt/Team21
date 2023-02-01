@@ -3,7 +3,7 @@ import BarChart from "./BarChart";
 import CheckBox from "./CheckBox";
 import ToggleSwitch from "./ToggleSwitch";
 import React, { useEffect, useState, useContext } from "react";
-import { StateContext, MapContext } from "./App";
+import { StateContext, MapContext, SliderContext } from "./App";
 import { colors, colorsBundesländer } from "./colors";
 import { keys, keysBundesländer } from "./keys";
 import { data as dataGermany } from "./data";
@@ -26,7 +26,7 @@ import {
   brandenburg,
 } from "./bundeslandData";
 
-function BundeslandChart({ selectedInterval }) {
+function BundeslandChart() {
   const [isLoading, setLoading] = useState(true);
   // eslint-disable-next-line
   const [checkedChart, setCheckedChart] = useState(true);
@@ -34,6 +34,8 @@ function BundeslandChart({ selectedInterval }) {
   const { currentState, changeState } = useContext(StateContext);
   // eslint-disable-next-line
   const { checkedMap, setCheckedMap } = useContext(MapContext);
+
+  const {selectedInterval, setSelectedInterval} = useContext(SliderContext);
 
   //Switch Map if and if no state is selected
   useEffect(() => {
@@ -63,6 +65,11 @@ function BundeslandChart({ selectedInterval }) {
       getBundeslandData(currentState);
     }
   }, [currentState, checkedAusland, checkedInland, checkedCoronaBg]);
+
+  useEffect(() => {
+    console.log(selectedInterval);
+    setSelectedInterval(selectedInterval);
+  }, [selectedInterval]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {
