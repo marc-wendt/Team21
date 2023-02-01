@@ -37,16 +37,11 @@ body {
 
 .description { 
   grid-area: description; 
-  padding-top: 110px;
+  padding-top: 155px;
 }
 
 .description p {
-  font-size: larger;
-}
-
-.description h2 {
-  font-size: x-large;
-  font-weight: normal;
+  font-size:medium;
 }
 
 path.clicked {
@@ -57,10 +52,10 @@ path.clicked {
 .textHeader {
   display: grid; 
   grid-auto-columns: 300px; 
-  grid-template-columns: 250px 200px; 
+  grid-template-columns: 250px 500px 200px; 
   grid-template-rows: 80px; 
   grid-template-areas: 
-    "legendHeader filterHeader";
+    "legendHeader filterHeader descriptionHeader";
   font-size: x-large;
 }
 
@@ -71,6 +66,12 @@ path.clicked {
 .filterHeader {
   display: inline-flex;
   padding-top: 22px;
+}
+
+.descriptionHeader {
+  display: inline-flex;
+  padding-top: 22px;
+  padding-left: 368px;
 }
 
 .checkboxgrid {
@@ -104,3 +105,14 @@ font-size: 22px;
 color: white;
 }
 
+a:link {
+  color:rgb(19, 74, 146);
+}
+
+a:visited {
+  color: rgb(19, 74, 146);
+}
+
+a:hover {
+  color: rgb(25, 96, 189);
+}

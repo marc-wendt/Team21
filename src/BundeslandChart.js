@@ -135,7 +135,7 @@ function BundeslandChart() {
       <div>
         <div className="header">
           <p>
-            Ankünfte von Inländern pro Beherbergungsart für gesamt Deutschland
+            Anzahl der Ankünfte nach Unterkunftsart von Gästen aus Deutschland
           </p>
         </div>
         <BarChart data={dataG} keys={keys} colors={colors} />
@@ -143,6 +143,7 @@ function BundeslandChart() {
         <div className="textHeader">
           <p className="legendHeader"> Legende:</p>
           <p className="filterHeader"> Filter: </p>
+          <p className="descriptionHeader"> Daten: </p>
         </div>
         <div className="checkboxgrid">
           <div className="checkboxgrid1">
@@ -236,7 +237,7 @@ function BundeslandChart() {
   return (
     <div>
       <div className="header">
-        <p>Ankünfte in {currentState}</p>
+        <p>Anzahl der Ankünfte von Gästen in {currentState}</p>
       </div>
       <BarChartBundesland
         data={data}
@@ -248,6 +249,7 @@ function BundeslandChart() {
       <div className="textHeader">
         <p className="legendHeader"> Legende:</p>
         <p className="filterHeader"> Filter: </p>
+        <p className="descriptionHeader"> Daten: </p>
       </div>
       <CheckBox
         label="Inland"
