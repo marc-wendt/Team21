@@ -121,3 +121,19 @@ a:visited {
 a:hover {
   color: rgb(25, 96, 189);
 }
+
+line.track-fill {
+  stroke:rgb(25, 96, 189)
+}
+
+line.track-inset {
+  stroke: rgb(190, 190, 190);
+}
+
+line.track {
+  stroke: rgb(100, 100, 100)
+}
+
+g.tick {
+  fill: whitesmoke;
+}
