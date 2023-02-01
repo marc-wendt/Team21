@@ -82,10 +82,18 @@ path.clicked {
 .checkboxgrid {
   display: grid; 
   grid-auto-columns: 300px; 
-  grid-template-columns: 250px 200px; 
-  grid-template-rows: 80px; 
+  grid-template-columns: 250px 250px; 
+  grid-template-rows: 200px; 
   grid-template-areas: 
     "checkboxgrid1 checkboxgrid2";
+}
+
+.checkboxgrid1 {
+  grid-area: checkboxgrid1; 
+}
+
+.checkboxgrid2 {
+  grid-area: checkboxgrid2; 
 }
 
 div.tooltip {   

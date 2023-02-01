@@ -158,6 +158,7 @@ function BundeslandChart() {
         </div>
         <div className="checkboxgrid">
           <div className="checkboxgrid1">
+            <br></br>
             <CheckBox
               label="Hotels"
               value={checkboxesBeherbergung.hotels}
@@ -200,6 +201,7 @@ function BundeslandChart() {
             />
           </div>
           <div className="checkboxgrid2">
+            <br></br>
             <CheckBox
               label="Ferienhäuser und -wohnungen"
               value={checkboxesBeherbergung.ferienhäuser}
@@ -263,6 +265,7 @@ function BundeslandChart() {
         <p className="filterHeader"> Filter: </p>
         <p className="descriptionHeader"> Daten: </p>
       </div>
+      <br></br>
       <CheckBox
         label="Inland"
         value={checkedInland}
