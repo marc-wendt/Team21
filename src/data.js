@@ -1,4 +1,4 @@
-export const data = [
+export const dataGermany = [
   {
     month: "Jan 19",
     hotels_ohne_garnis_inland: 4685422,
@@ -969,5 +969,3 @@ export const data = [
     insgesamt_ausland: 2783907,
   },
 ];
-
-export default data;

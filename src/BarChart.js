@@ -26,7 +26,10 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
   }, [selectedInterval, data]);
 
   useEffect(() => {
-    const svg = d3.select(container.current);
+    const svg = d3
+      .select(container.current)
+      .attr("width", width)
+      .attr("height", height);
 
     // create scales
     const xScale = d3
@@ -56,6 +59,8 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
 
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(intervalData);
+
+    var rects = svg.selectAll("g rect").data(data);
 
     var rects = svg.selectAll("g rect").data(data);
 
@@ -94,11 +99,11 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
     legend
       .selectAll("text")
       .data([
-        "Hotels ohne garnis",
         "Hotels",
+        "Hotels ohne garnis",
         "Gasthöfe",
         "Pensionen",
-        "Ferienhäuser und Ferienwohnungen",
+        "Ferienhäuser und -wohnungen",
         "Jugendherbergen",
         "Campingplätze",
         "Sonstige",
@@ -128,6 +133,11 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
       .attr("transform", "rotate(-65)");
+
+    const yAxis = d3.axisLeft(yScale);
+
+    svg.select(".y-axis").remove();
+    svg.append("g").attr("class", "y-axis").call(yAxis);
 
     // update bar data
     rects

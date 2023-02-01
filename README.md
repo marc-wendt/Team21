@@ -24,7 +24,7 @@ Unsere Forschungsfrage: Hatte Corona einen Einfluss auf das Urlaubsverhalten der
 - [x] **Corona Maßnahmen Verlauf**, im Hintergrund des Balkendiagramms anzeigen
 
 ### Nice-to-have:
-- [ ] **Filterfunktionen** um einzelne **Beherbergungsarten** (Hotels, Campingplätze, Jugendherbergen, etc.) im Balkendiagramm ein- bzw. ausblenden zu lassen
+- [x] **Filterfunktionen** um einzelne **Beherbergungsarten** (Hotels, Campingplätze, Jugendherbergen, etc.) im Balkendiagramm ein- bzw. ausblenden zu lassen
 - [x] **Filterfunktion** um Beherbergungsdaten von **In- vs. Auslandsgästen** ein- bzw. ausblenden zu lassen
 - [ ] **Switchfunktion** um dynamisch zwischen einem **gestapelten und gruppierten Balkendiagramm** wechseln zu können
 - [x] **Switchfunktion** um dynamisch Coronamaßnahmen ein- und ausblenden zu können

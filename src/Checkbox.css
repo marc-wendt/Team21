@@ -1,13 +1,13 @@
 .Checkbox {
     display: grid;
-    grid-template-columns: 65px 300px;
+    grid-template-columns: 105px 300px;
     grid-template-rows: 35px;
     grid-template-areas: "checkbox checkbox-label";
     padding-left: 200px;
 }
 
 .checkbox {
-    padding-left: 25px;
+    padding-left: 65px;
     scale: 120%;
     padding-top: 25px;
 }

@@ -42,16 +42,11 @@ body {
 
 .description { 
   grid-area: description; 
-  padding-top: 110px;
+  padding-top: 155px;
 }
 
 .description p {
-  font-size: larger;
-}
-
-.description h2 {
-  font-size: x-large;
-  font-weight: normal;
+  font-size:medium;
 }
 
 path.clicked {
@@ -62,10 +57,10 @@ path.clicked {
 .textHeader {
   display: grid; 
   grid-auto-columns: 300px; 
-  grid-template-columns: 200px 200px; 
+  grid-template-columns: 250px 500px 200px; 
   grid-template-rows: 80px; 
   grid-template-areas: 
-    "legendHeader filterHeader";
+    "legendHeader filterHeader descriptionHeader";
   font-size: x-large;
 }
 
@@ -76,6 +71,21 @@ path.clicked {
 .filterHeader {
   display: inline-flex;
   padding-top: 62px;
+}
+
+.descriptionHeader {
+  display: inline-flex;
+  padding-top: 22px;
+  padding-left: 368px;
+}
+
+.checkboxgrid {
+  display: grid; 
+  grid-auto-columns: 300px; 
+  grid-template-columns: 250px 200px; 
+  grid-template-rows: 80px; 
+  grid-template-areas: 
+    "checkboxgrid1 checkboxgrid2";
 }
 
 div.tooltip {   
@@ -100,18 +110,14 @@ font-size: 22px;
 color: white;
 }
 
-line.track-fill {
-  stroke:rgb(25, 96, 189)
+a:link {
+  color:rgb(19, 74, 146);
 }
 
-line.track-inset {
-  stroke: rgb(190, 190, 190);
+a:visited {
+  color: rgb(19, 74, 146);
 }
 
-line.track {
-  stroke: rgb(100, 100, 100)
-}
-
-g.tick {
-  fill: whitesmoke;
+a:hover {
+  color: rgb(25, 96, 189);
 }
