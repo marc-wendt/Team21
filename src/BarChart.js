@@ -62,8 +62,6 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
 
     var rects = svg.selectAll("g rect").data(data);
 
-    var rects = svg.selectAll("g rect").data(data);
-
     // add bars
     svg
       .selectAll(".bar")
@@ -133,8 +131,6 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
       .attr("transform", "rotate(-65)");
-
-    const yAxis = d3.axisLeft(yScale);
 
     svg.select(".y-axis").remove();
     svg.append("g").attr("class", "y-axis").call(yAxis);

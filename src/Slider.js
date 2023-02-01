@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import { sliderBottom } from "d3-simple-slider";
-import { data as database } from "./data";
+import { dataGermany as database } from "./data";
 
 const Slider = ({ selectedInterval, setSelectedInterval }) => {
   const div = document.createElement("div");

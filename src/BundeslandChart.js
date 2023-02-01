@@ -145,7 +145,7 @@ function BundeslandChart() {
           </p>
         </div>
         <BarChart
-          data={dataGermany}
+          data={dataG}
           keys={keys}
           colors={colors}
           selectedInterval={selectedInterval}

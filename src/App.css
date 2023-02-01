@@ -42,7 +42,7 @@ body {
 
 .description { 
   grid-area: description; 
-  padding-top: 155px;
+  padding-top: 165px;
 }
 
 .description p {
@@ -75,7 +75,7 @@ path.clicked {
 
 .descriptionHeader {
   display: inline-flex;
-  padding-top: 22px;
+  padding-top: 62px;
   padding-left: 368px;
 }
 
