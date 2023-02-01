@@ -14,8 +14,7 @@ body {
 }
 
 .header { 
-  padding-bottom: 10px;
-  font-size: xx-large;
+  font-size: 20pt;
 }
 
 .chart { 
@@ -27,6 +26,12 @@ body {
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   padding-left: 100px;
+}
+
+.slider { 
+  position: absolute;
+  top: 620px;
+  left: 80px;
 }
 
 .map { 
@@ -60,12 +65,12 @@ path.clicked {
 }
 
 .legendHeader {
-  padding-top: 20px;
+  padding-top: 60px;
 }
 
 .filterHeader {
   display: inline-flex;
-  padding-top: 22px;
+  padding-top: 62px;
 }
 
 .descriptionHeader {

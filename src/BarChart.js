@@ -1,12 +1,29 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useMemo } from "react";
 import * as d3 from "d3";
 
-const BarChart = ({ data, keys, colors }) => {
+const BarChart = ({ data, keys, colors, selectedInterval }) => {
   const container = useRef(null);
 
   // define dimensions of the chart
   const width = 1000;
   const height = 500;
+
+  //data for only the selected interval
+  var intervalData = useMemo(() => {
+    var interval = [1, 30];
+    if (selectedInterval != null) {
+      interval = selectedInterval;
+    }
+
+    intervalData = [];
+    var j = 0;
+    for (let i = interval[0]; i <= interval[1] && i < data.length; i++) {
+      intervalData[j] = data[i];
+      j += 1;
+    }
+
+    return intervalData;
+  }, [selectedInterval, data]);
 
   useEffect(() => {
     const svg = d3
@@ -17,7 +34,7 @@ const BarChart = ({ data, keys, colors }) => {
     // create scales
     const xScale = d3
       .scaleBand()
-      .domain(data.map((d) => d.month))
+      .domain(intervalData.map((d) => d.month))
       .range([0, width])
       .padding(0.3);
 
@@ -41,7 +58,9 @@ const BarChart = ({ data, keys, colors }) => {
       .range([height, 0]);
 
     // create the stacked bars
-    const stackedData = d3.stack().keys(keys)(data);
+    const stackedData = d3.stack().keys(keys)(intervalData);
+
+    var rects = svg.selectAll("g rect").data(data);
 
     var rects = svg.selectAll("g rect").data(data);
 
@@ -72,7 +91,7 @@ const BarChart = ({ data, keys, colors }) => {
       .enter()
       .append("rect")
       .attr("x", 0)
-      .attr("y", (d, i) => i * 20)
+      .attr("y", (d, i) => i * 20 + 35)
       .attr("width", 10)
       .attr("height", 10)
       .attr("fill", (d) => colors[d.key]);
@@ -92,16 +111,24 @@ const BarChart = ({ data, keys, colors }) => {
       .enter()
       .append("text")
       .attr("x", 20)
-      .attr("y", (d, i) => i * 20 + 10)
+      .attr("y", (d, i) => i * 20 + 45)
       .style("fill", "whitesmoke")
       .style("font-size", "15px")
       .text((d) => d);
 
     // add axes
+    const yAxis = d3.axisLeft(yScale);
+    const xAxis = d3.axisBottom(xScale);
+
+    svg.select(".y-axis").remove();
+    svg.append("g").attr("class", "y-axis").call(yAxis);
+
+    svg.selectAll(".x-axis").remove();
     svg
       .append("g")
+      .attr("class", "x-axis")
       .attr("transform", `translate(0, ${height})`)
-      .call(d3.axisBottom(xScale))
+      .call(xAxis)
       .selectAll("text")
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
@@ -150,8 +177,7 @@ const BarChart = ({ data, keys, colors }) => {
       .attr("width", xScale.bandwidth());
 
     rects.exit().remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, colors, keys, intervalData]);
 
   return (
     <div style={{ width: width, height: height, margin: "auto" }}>
@@ -176,7 +202,7 @@ const BarChart = ({ data, keys, colors }) => {
           .axis path,
           .axis line {
             fill: none;
-            stroke: #000;
+            stroke: whitesmoke;
             shape-rendering: crispEdges;
           }
         `}

@@ -3,7 +3,7 @@ import BarChart from "./BarChart";
 import CheckBox from "./CheckBox";
 import ToggleSwitch from "./ToggleSwitch";
 import React, { useEffect, useState, useContext } from "react";
-import { StateContext, MapContext } from "./App";
+import { StateContext, MapContext, SliderContext } from "./App";
 import { colors, colorsBundesländer } from "./colors";
 import { keys, keysBundesländer } from "./keys";
 import { dataGermany } from "./data";
@@ -22,6 +22,8 @@ function BundeslandChart() {
   const { currentState, changeState } = useContext(StateContext);
   // eslint-disable-next-line
   const { checkedMap, setCheckedMap } = useContext(MapContext);
+
+  const { selectedInterval, setSelectedInterval } = useContext(SliderContext);
 
   //Switch Map if and if no state is selected
   useEffect(() => {
@@ -66,6 +68,10 @@ function BundeslandChart() {
       getBundeslandData(currentState, setData);
     }
   }, [currentState, checkedAusland, checkedInland, checkedCoronaBg]);
+
+  useEffect(() => {
+    setSelectedInterval(selectedInterval);
+  }, [selectedInterval, setSelectedInterval]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {
@@ -138,7 +144,12 @@ function BundeslandChart() {
             Anzahl der Ankünfte nach Unterkunftsart von Gästen aus Deutschland
           </p>
         </div>
-        <BarChart data={dataG} keys={keys} colors={colors} />
+        <BarChart
+          data={dataGermany}
+          keys={keys}
+          colors={colors}
+          selectedInterval={selectedInterval}
+        />
         <br></br>
         <div className="textHeader">
           <p className="legendHeader"> Legende:</p>
@@ -244,6 +255,7 @@ function BundeslandChart() {
         keys={keysBundesländer}
         colors={colorsBundesländer}
         showBg={checkedCoronaBg}
+        selectedInterval={selectedInterval}
       />
       <br></br>
       <div className="textHeader">

@@ -9,9 +9,10 @@
 .checkbox {
     padding-left: 65px;
     scale: 120%;
+    padding-top: 25px;
 }
 
 .checkbox-label {
-    padding-top: 14px;
+    padding-top: 44px;
     font-size: large;
 }
