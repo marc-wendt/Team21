@@ -82,7 +82,7 @@ const BarChartBundesland = ({
               }
             }
           );
-        xIndex += 20.7;
+        xIndex += 21.6;
       });
     } else {
       console.log("out");
