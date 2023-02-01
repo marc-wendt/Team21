@@ -37,12 +37,18 @@ function App() {
       <div className="description">
         <h2>Beschreibungstext zu Daten:</h2>
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet.
-        </p>
+          Das Diagramm stellt einen Überblick zu der Urlaubsentwicklung in Deutschland während Corona dar. Unterteilt ist es zum einen in die verschiedenen Unterkunftsarten, sowie in die Ankünfte von Gästen mit ständigem Wohnsitz innerhalb Deutschlands (Inland/Ausland). 
+          Durch das Klicken auf die Deutschlandkarte wird eine Aufteilung in die verschiedenen Bundesländer ermöglicht. 
+          Ein weiteres Feature ist die Möglichkeit, die zu dem Zeitpunkt veranlassten Corona Maßnahmen ein- und ausblenden zu können.<br />
+          <br />
+         Quellen:<br />
+          Daten Deutschland: https://bit.ly/3JEk6gy <br />
+          Daten Bundesländer: https://bit.ly/3JwZ0Rw <br />
+          Daten Corona Maßnahmen: https://bit.ly/3WUlP4o
+          </p>
+          
+
+        
       </div>
     </div>
   );
