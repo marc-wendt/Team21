@@ -35,7 +35,7 @@ function BundeslandChart() {
   // eslint-disable-next-line
   const { checkedMap, setCheckedMap } = useContext(MapContext);
 
-  const {selectedInterval, setSelectedInterval} = useContext(SliderContext);
+  const { selectedInterval, setSelectedInterval } = useContext(SliderContext);
 
   //Switch Map if and if no state is selected
   useEffect(() => {
@@ -67,9 +67,8 @@ function BundeslandChart() {
   }, [currentState, checkedAusland, checkedInland, checkedCoronaBg]);
 
   useEffect(() => {
-    console.log(selectedInterval);
     setSelectedInterval(selectedInterval);
-  }, [selectedInterval]);
+  }, [selectedInterval, setSelectedInterval]);
 
   // Checkbox Action Handler
   const handleChangeInland = () => {
@@ -299,7 +298,12 @@ function BundeslandChart() {
             Ankünfte von Inländern pro Beherbergungsart für gesamt Deutschland
           </p>
         </div>
-        <BarChart data={dataGermany} keys={keys} colors={colors} selectedInterval={selectedInterval}/>
+        <BarChart
+          data={dataGermany}
+          keys={keys}
+          colors={colors}
+          selectedInterval={selectedInterval}
+        />
         <br></br>
         <div className="textHeader">
           <p className="legendHeader"> Legende:</p>

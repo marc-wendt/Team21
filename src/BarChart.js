@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useMemo } from "react";
 import * as d3 from "d3";
 
 const BarChart = ({ data, keys, colors, selectedInterval }) => {
@@ -9,16 +9,21 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
   const height = 500;
 
   //data for only the selected interval
-  var interval = [1, 30];
-  if (selectedInterval != null){
-    interval = selectedInterval
-  }
-  const intervalData = [];
-  var j = 0;
-  for (let i = interval[0]; (i < interval[1]) && (i < data.length); i++) {
-    intervalData[j] = data[i];
-    j += 1;
-  }
+  var intervalData = useMemo(() => {
+    var interval = [1, 30];
+    if (selectedInterval != null) {
+      interval = selectedInterval;
+    }
+
+    intervalData = [];
+    var j = 0;
+    for (let i = interval[0]; i <= interval[1] && i < data.length; i++) {
+      intervalData[j] = data[i];
+      j += 1;
+    }
+
+    return intervalData;
+  }, [selectedInterval, data]);
 
   useEffect(() => {
     const svg = d3.select(container.current);
@@ -35,10 +40,10 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
       .domain([
         0,
         d3.max(
-          intervalData,
+          data,
           (d) =>
-            d.hotels_inland +
             d.hotels_ohne_garnis_inland +
+            d.hotels_inland +
             d.gasthöfe_inland +
             d.pensionen_inland +
             d.ferienhäuser_und_ferienwohnungen_inland +
@@ -50,8 +55,9 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
       .range([height, 0]);
 
     // create the stacked bars
-    //const stackedData = d3.stack().keys(["hotels_inland", "hotels_ohne_garnis_inland", "gasthöfe_inland", "pensionen_inland", "ferienhäuser_und_ferienwohnungen_inland", "jugendherbergen_inland", "campingplätze_inland", "sonstige_inland"])(data);
     const stackedData = d3.stack().keys(keys)(intervalData);
+
+    var rects = svg.selectAll("g rect").data(data);
 
     // add bars
     svg
@@ -80,7 +86,7 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
       .enter()
       .append("rect")
       .attr("x", 0)
-      .attr("y", (d, i) => i * 20)
+      .attr("y", (d, i) => i * 20 + 35)
       .attr("width", 10)
       .attr("height", 10)
       .attr("fill", (d) => colors[d.key]);
@@ -100,24 +106,68 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
       .enter()
       .append("text")
       .attr("x", 20)
-      .attr("y", (d, i) => i * 20 + 10)
+      .attr("y", (d, i) => i * 20 + 45)
       .style("fill", "whitesmoke")
       .style("font-size", "15px")
       .text((d) => d);
 
     // add axes
+    const yAxis = d3.axisLeft(yScale);
+    const xAxis = d3.axisBottom(xScale);
+
+    svg.select(".y-axis").remove();
+    svg.append("g").attr("class", "y-axis").call(yAxis);
+
+    svg.selectAll(".x-axis").remove();
     svg
       .append("g")
+      .attr("class", "x-axis")
       .attr("transform", `translate(0, ${height})`)
-      .call(d3.axisBottom(xScale))
+      .call(xAxis)
       .selectAll("text")
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
       .attr("transform", "rotate(-65)");
 
-    svg.append("g").call(d3.axisLeft(yScale));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+    // update bar data
+    rects
+      .data(data)
+      .merge(rects)
+      .attr("x", (d) => xScale(d.month))
+      .attr("y", (d) => yScale(d[1]))
+      .attr("height", function (d) {
+        if (
+          Math.sign(
+            height -
+              (yScale(d.hotels_inland) +
+                yScale(d.hotels_ohne_garnis_inland) +
+                yScale(d.gasthöfe_inland) +
+                yScale(d.pensionen_inland) +
+                yScale(d.ferienhäuser_und_ferienwohnungen_inland) +
+                yScale(d.jugendherbergen_inland) +
+                yScale(d.campingplätze_inland) +
+                yScale(d.sonstige_inland))
+          ) !== 1
+        ) {
+          return 0;
+        } else {
+          return (
+            height -
+            (yScale(d.hotels_inland) +
+              yScale(d.hotels_ohne_garnis_inland) +
+              yScale(d.gasthöfe_inland) +
+              yScale(d.pensionen_inland) +
+              yScale(d.ferienhäuser_und_ferienwohnungen_inland) +
+              yScale(d.jugendherbergen_inland) +
+              yScale(d.campingplätze_inland) +
+              yScale(d.sonstige_inland))
+          );
+        }
+      })
+      .attr("width", xScale.bandwidth());
+
+    rects.exit().remove();
+  }, [data, colors, keys, intervalData]);
 
   return (
     <div style={{ width: width, height: height, margin: "auto" }}>
@@ -142,7 +192,7 @@ const BarChart = ({ data, keys, colors, selectedInterval }) => {
           .axis path,
           .axis line {
             fill: none;
-            stroke: #000;
+            stroke: whitesmoke;
             shape-rendering: crispEdges;
           }
         `}

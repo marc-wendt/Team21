@@ -14,8 +14,7 @@ body {
 }
 
 .header { 
-  padding-bottom: 10px;
-  font-size: xx-large;
+  font-size: 20pt;
 }
 
 .chart { 
@@ -30,15 +29,10 @@ body {
 }
 
 .slider { 
-  grid-area: chart;
-  grid-row: 4;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  font-size: calc(10px + 2vmin);
-  padding-left: 100px;
+  position: absolute;
+  top: 620px;
+  left: 80px;
 }
-
 
 .map { 
   grid-area: map; 
@@ -76,12 +70,12 @@ path.clicked {
 }
 
 .legendHeader {
-  padding-top: 20px;
+  padding-top: 60px;
 }
 
 .filterHeader {
   display: inline-flex;
-  padding-top: 22px;
+  padding-top: 62px;
 }
 
 div.tooltip {   
@@ -106,3 +100,18 @@ font-size: 22px;
 color: white;
 }
 
+line.track-fill {
+  stroke:rgb(25, 96, 189)
+}
+
+line.track-inset {
+  stroke: rgb(190, 190, 190);
+}
+
+line.track {
+  stroke: rgb(100, 100, 100)
+}
+
+g.tick {
+  fill: whitesmoke;
+}

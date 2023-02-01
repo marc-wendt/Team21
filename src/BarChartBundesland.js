@@ -1,29 +1,37 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useMemo } from "react";
 import * as d3 from "d3";
 
-// TODO: y axes bei switch zwischen in- und ausland beibehalten (Verhältnis gleich lassen um vergleichbarer zu sein)
-
-const BarChartBundesland = ({ data, keys, colors, showBg, selectedInterval }) => {
+const BarChartBundesland = ({
+  data,
+  keys,
+  colors,
+  showBg,
+  selectedInterval,
+}) => {
   const container = useRef(null);
 
   // define dimensions of the chart
   const width = 1000;
   const height = 500;
 
-  
   //data for only the selected interval
-  var interval = [1, 30];
-  if (selectedInterval != null){
-    console.log("selectedinterval not null")
-    console.log(selectedInterval)
-    interval = selectedInterval
-  }
-  const intervalData = [];
-  var j = 0;
-  for (let i = interval[0]; (i < interval[1]) && (i < data.length); i++) {
-    intervalData[j] = data[i];
-    j += 1;
-  }
+  var intervalData = useMemo(() => {
+    var interval = [1, 30];
+    if (selectedInterval != null) {
+      console.log("selectedinterval not null");
+      console.log(selectedInterval);
+      interval = selectedInterval;
+    }
+
+    intervalData = [];
+    var j = 0;
+    for (let i = interval[0]; i <= interval[1] && i < data.length; i++) {
+      intervalData[j] = data[i];
+      j += 1;
+    }
+
+    return intervalData;
+  }, [selectedInterval, data]);
 
   useEffect(() => {
     const svg = d3
@@ -130,7 +138,7 @@ const BarChartBundesland = ({ data, keys, colors, showBg, selectedInterval }) =>
       .enter()
       .append("rect")
       .attr("x", 0)
-      .attr("y", (d, i) => i * 20)
+      .attr("y", (d, i) => i * 20 + 35)
       .attr("width", 10)
       .attr("height", 10)
       .attr("fill", (d) => colors[d.key]);
@@ -141,7 +149,7 @@ const BarChartBundesland = ({ data, keys, colors, showBg, selectedInterval }) =>
       .enter()
       .append("text")
       .attr("x", 20)
-      .attr("y", (d, i) => i * 20 + 10)
+      .attr("y", (d, i) => i * 20 + 45)
       .style("fill", "whitesmoke")
       .style("font-size", "15px")
       .text((d) => d);
@@ -193,19 +201,22 @@ const BarChartBundesland = ({ data, keys, colors, showBg, selectedInterval }) =>
       .style("font-size", "15px");
 
     // add axes
+    const yAxis = d3.axisLeft(yScale);
+    const xAxis = d3.axisBottom(xScale);
+
+    svg.select(".y-axis").remove();
+    svg.append("g").attr("class", "y-axis").call(yAxis);
+
+    svg.selectAll(".x-axis").remove();
     svg
       .append("g")
+      .attr("class", "x-axis")
       .attr("transform", `translate(0, ${height})`)
-      .call(d3.axisBottom(xScale))
+      .call(xAxis)
       .selectAll("text")
       .style("text-anchor", "end")
       .attr("dx", "-.8em")
       .attr("transform", "rotate(-65)");
-
-    const yAxis = d3.axisLeft(yScale);
-
-    svg.select(".y-axis").remove();
-    svg.append("g").attr("class", "y-axis").call(yAxis);
 
     // update bar data
     rects
@@ -225,8 +236,7 @@ const BarChartBundesland = ({ data, keys, colors, showBg, selectedInterval }) =>
       .attr("width", xScale.bandwidth());
 
     rects.exit().remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, showBg]);
+  }, [data, showBg, colors, keys, intervalData]);
 
   return (
     <div style={{ width: width, height: height, margin: "auto" }}>
@@ -251,7 +261,7 @@ const BarChartBundesland = ({ data, keys, colors, showBg, selectedInterval }) =>
           .axis path,
           .axis line {
             fill: none;
-            stroke: #000;
+            stroke: whitesmoke;
             shape-rendering: crispEdges;
           }
         `}
