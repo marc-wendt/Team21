@@ -30,25 +30,46 @@ function App() {
           <MapContext.Provider
             value={{ checkedMap, setCheckedMap: setCheckedMap }}
           >
-              <GermanyMap />
+            <GermanyMap />
           </MapContext.Provider>
         </StateContext.Provider>
       </div>
       <div className="description">
-        <h2>Beschreibungstext zu Daten:</h2>
         <p>
-          Das Diagramm stellt einen Überblick zu der Urlaubsentwicklung in Deutschland während Corona dar. Unterteilt ist es zum einen in die verschiedenen Unterkunftsarten, sowie in die Ankünfte von Gästen mit ständigem Wohnsitz innerhalb Deutschlands (Inland/Ausland). 
-          Durch das Klicken auf die Deutschlandkarte wird eine Aufteilung in die verschiedenen Bundesländer ermöglicht. 
-          Ein weiteres Feature ist die Möglichkeit, die zu dem Zeitpunkt veranlassten Corona Maßnahmen ein- und ausblenden zu können.<br />
+          Das Diagramm stellt einen Überblick zu der Urlaubsentwicklung in
+          Deutschland während Corona dar. Unterteilt ist es zum einen in die
+          verschiedenen Unterkunftsarten, sowie in die Ankünfte von Gästen mit
+          ständigem Wohnsitz innerhalb Deutschlands (Inland/Ausland). Durch das
+          Klicken auf die Deutschlandkarte wird eine Aufteilung in die
+          verschiedenen Bundesländer ermöglicht. Ein weiteres Feature ist die
+          Möglichkeit, die zu dem Zeitpunkt veranlassten Corona Maßnahmen ein-
+          und ausblenden zu können.
           <br />
-         Quellen:<br />
-          Daten Deutschland: https://bit.ly/3JEk6gy <br />
-          Daten Bundesländer: https://bit.ly/3JwZ0Rw <br />
-          Daten Corona Maßnahmen: https://bit.ly/3WUlP4o
-          </p>
-          
-
-        
+          Quellen:{"  "}
+          <a
+            href="https://bit.ly/3JEk6gy"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Deutschland
+          </a>
+          ,{"  "}
+          <a
+            href="https://bit.ly/3JwZ0Rw"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Bundesländer
+          </a>
+          ,{"  "}
+          <a
+            href="https://bit.ly/3WUlP4o"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Corona Maßnahmen
+          </a>
+        </p>
       </div>
     </div>
   );
