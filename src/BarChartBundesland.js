@@ -18,8 +18,6 @@ const BarChartBundesland = ({
   var intervalData = useMemo(() => {
     var interval = [1, 30];
     if (selectedInterval != null) {
-      console.log("selectedinterval not null");
-      console.log(selectedInterval);
       interval = selectedInterval;
     }
 
@@ -46,6 +44,11 @@ const BarChartBundesland = ({
       .range([0, width])
       .padding(0.3);
 
+    const xScaleBG = d3
+      .scaleBand()
+      .domain(intervalData.map((d) => d.month))
+      .range([-10, width]);
+
     const yScale = d3
       .scaleLinear()
       .domain([0, d3.max(intervalData, (d) => d.inland + d.ausland)])
@@ -54,15 +57,17 @@ const BarChartBundesland = ({
     // create the stacked bars
     const stackedData = d3.stack().keys(keys)(intervalData);
 
+    var bgRects = svg.selectAll("rect");
+    bgRects.remove();
+
+    // add background bars
     if (showBg) {
-      let xIndex = 3.31;
-      console.log("in");
-      data.forEach((element) => {
+      intervalData.forEach((element) => {
         svg
           .append("rect")
-          .attr("x", xIndex)
+          .attr("x", xScale(element.month) - 3)
           .attr("y", 0)
-          .attr("width", 23)
+          .attr("width", xScaleBG.bandwidth())
           .attr("height", 500)
           .style(
             "fill",
@@ -82,16 +87,14 @@ const BarChartBundesland = ({
               }
             }
           );
-        xIndex += 21.6;
       });
     } else {
-      console.log("out");
-      d3.selectAll("rect").remove();
+      d3.selectAll("rect").exit().remove();
     }
 
     var rects = svg.selectAll("g rect").data(data);
 
-    // add bars
+    // add chart bars
     svg
       .selectAll(".bar")
       .data(stackedData)
