@@ -3,6 +3,7 @@ import BundeslandChart from "./BundeslandChart";
 import GermanyMap from "./GermanyMap";
 import React, { useState } from "react";
 import Slider from "./Slider";
+import { color } from "d3";
 
 export const StateContext = React.createContext();
 export const MapContext = React.createContext();
@@ -57,11 +58,13 @@ function App() {
           Klicken auf die Deutschlandkarte wird eine Aufteilung in die
           verschiedenen Bundesländer ermöglicht. Ein weiteres Feature ist die
           Möglichkeit, die zu dem Zeitpunkt veranlassten Corona Maßnahmen ein-
-          und ausblenden zu können.
+          und ausblenden zu können. Beginnend mit der Pandemie im März 2020 bis 
+          Oktober 2021.
           <br />
           Quellen:{"  "}
           <a
             href="https://bit.ly/3JEk6gy"
+            style={{color: '#0080FF'}}
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -70,6 +73,7 @@ function App() {
           ,{"  "}
           <a
             href="https://bit.ly/3JwZ0Rw"
+            style={{color: '#0080FF'}}
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -78,6 +82,7 @@ function App() {
           ,{"  "}
           <a
             href="https://bit.ly/3WUlP4o"
+            style={{color: '#0080FF'}}
             target="_blank"
             rel="noreferrer noopener"
           >

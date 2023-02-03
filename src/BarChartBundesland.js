@@ -127,7 +127,7 @@ const BarChartBundesland = ({
         if (value === 2) {
           return "Ausgangssperre";
         }
-        return "Keine Maßnahmen";
+        return "Maßnahmen temporär aufgehoben";
       });
 
     // add legend
