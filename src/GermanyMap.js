@@ -38,7 +38,7 @@ function GermanyMap() {
         .center([10.5, 51.3])
         .rotate([-10.5, 0])
         .scale(4000)
-        .translate([700, 250]);
+        .translate([750, 250]);
       const path = d3.geoPath().projection(projection);
 
       var div = d3

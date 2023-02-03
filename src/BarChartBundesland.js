@@ -127,7 +127,7 @@ const BarChartBundesland = ({
         if (value === 2) {
           return "Ausgangssperre";
         }
-        return "Keine Maßnahmen";
+        return "Maßnahmen temporär aufgehoben";
       });
 
     // add legend
@@ -169,7 +169,7 @@ const BarChartBundesland = ({
       .append("text")
       .attr("x", 23)
       .attr("y", 770)
-      .text("Keine Maßnahmen")
+      .text("Maßnahmen temporär aufgehoben")
       .style("fill", "whitesmoke")
       .style("font-size", "15px");
 
