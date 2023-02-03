@@ -3,7 +3,7 @@
     grid-template-columns: 70px 400px;
     grid-template-rows: 40px;
     grid-template-areas: "switch toggleswitch-label";
-    padding-left: 245px;
+    padding-left: 270px;
 }
 
 .switch{

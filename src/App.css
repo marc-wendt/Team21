@@ -6,7 +6,7 @@ body {
   color: whitesmoke;
   display: grid; 
   grid-auto-columns: 300px; 
-  grid-template-columns: 1220px 600px; 
+  grid-template-columns: 1180px 700px; 
   grid-template-rows: 570px 50px 300px; 
   grid-template-areas: 
     "chart map"
@@ -57,7 +57,7 @@ path.clicked {
 .textHeader {
   display: grid; 
   grid-auto-columns: 300px; 
-  grid-template-columns: 250px 500px 200px; 
+  grid-template-columns: 280px 500px 200px; 
   grid-template-rows: 80px; 
   grid-template-areas: 
     "legendHeader filterHeader descriptionHeader";
@@ -76,7 +76,7 @@ path.clicked {
 .descriptionHeader {
   display: inline-flex;
   padding-top: 62px;
-  padding-left: 368px;
+  padding-left: 298px;
 }
 
 .checkboxgrid {
@@ -119,19 +119,19 @@ color: white;
 }
 
 a:link {
-  color:rgb(19, 74, 146);
+  color: whitesmoke;
 }
 
 a:visited {
-  color: rgb(19, 74, 146);
+  color: whitesmoke;
 }
 
 a:hover {
-  color: rgb(25, 96, 189);
+  color:rgb(100, 172, 255);
 }
 
 line.track-fill {
-  stroke:rgb(25, 96, 189)
+  stroke:rgb(0,117,255);
 }
 
 line.track-inset {
