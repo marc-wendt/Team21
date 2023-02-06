@@ -1362,6 +1362,7 @@ export const hamburg = [
     month: "Jul 20",
     inland: 316426,
     ausland: 70563,
+    hotels: 1,
   },
   {
     month: "Aug 20",
